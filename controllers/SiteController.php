@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\ext\Misc\FlashMessageCreator;
 use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -76,6 +77,7 @@ class SiteController extends Controller
 
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            (new FlashMessageCreator())->addSuccess('You have been successfully registered');
             return $this->goBack();
         }
         return $this->render('signup_tpl', [

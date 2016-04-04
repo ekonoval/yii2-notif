@@ -22,7 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
-        <?=$form->errorSummary($model);?>
 
         <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
