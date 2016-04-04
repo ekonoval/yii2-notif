@@ -1,4 +1,7 @@
 yii migrate --migrationPath=@yii/rbac/migrations
+# yii migrate/down --migrationPath=@yii/rbac/migrations
+
+php yii rbac/init
 
 
 Yii 2 Basic Project Template
