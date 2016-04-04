@@ -24,7 +24,7 @@ class m160404_075639_init extends Migration
 
         $this->execute("
             INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-            (1, 'admin', 'TVX7defvydoxZHZv846jJ5qrR2pHN43q', '$2y$13$/VDCGt/mV0lpYX5NgT28o.R.ZtMSolJw1MVtzrPyIYhGq3W/YhAXi', NULL, '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+            (1, 'admin', 'TVX7defvydoxZHZv846jJ5qrR2pHN43q', '$2y$13$/VDCGt/mV0lpYX5NgT28o.R.ZtMSolJw1MVtzrPyIYhGq3W/YhAXi', NULL, 'admin@gmail.com', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
         ");
     }
 
