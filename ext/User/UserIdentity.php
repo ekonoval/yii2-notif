@@ -2,6 +2,7 @@
 namespace app\ext\User;
 
 use app\models\User;
+use Yii;
 use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
 
@@ -59,5 +60,15 @@ class UserIdentity extends User implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
+    }
+
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 }
