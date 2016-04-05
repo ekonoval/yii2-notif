@@ -1,5 +1,7 @@
 <?php
 
+use app\ext\User\UserIdentity;
+
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -15,7 +17,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => UserIdentity::class,
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -43,6 +45,10 @@ $config = [
             'showScriptName' => false,
             'rules' => [
             ],
+        ],
+
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
         ],
     ],
     'params' => $params,

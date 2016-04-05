@@ -3,6 +3,8 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\widgets\MenuWidget;
+use kartik\growl\Growl;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -22,6 +24,27 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
+
+<?php
+//Get all flash messages and loop through them
+foreach (Yii::$app->session->getAllFlashes() as $message){
+    echo Growl::widget([
+        'type' => (!empty($message['type'])) ? $message['type'] : 'danger',
+        //'title' => (!empty($message['title'])) ? Html::encode($message['title']) : 'Title Not Set!',
+        'icon' => (!empty($message['icon'])) ? $message['icon'] : 'fa fa-info',
+        'body' => (!empty($message['message'])) ? Html::encode($message['message']) : 'Message Not Set!',
+        //'showSeparator' => true,
+        //'delay' => 1, //This delay is how long before the message shows
+        'pluginOptions' => [
+            'delay' => (!empty($message['duration'])) ? $message['duration'] : 3000, //This delay is how long the message shows for
+            'placement' => [
+                'from' => (!empty($message['positonY'])) ? $message['positonY'] : 'top',
+                'align' => (!empty($message['positonX'])) ? $message['positonX'] : 'right',
+            ]
+        ]
+    ]);
+ } ?>
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -33,24 +56,13 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
+
+    echo MenuWidget::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
         ],
     ]);
     NavBar::end();
