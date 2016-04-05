@@ -4,7 +4,7 @@ namespace app\modules\backend\models\UserCrud;
 use app\models\User;
 use yii\data\ActiveDataProvider;
 
-class UserSearch extends User
+class UserCrudSearch extends User
 {
     public function rules()
     {

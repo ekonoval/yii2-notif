@@ -1,17 +1,14 @@
 <?php
 
 use app\models\User;
-use app\modules\backend\models\UserCrud\UserSearch;
-use backend\ext\User\BUserRbac;
-use backend\modules\auth\models\AdminCrud\AdminCrudSearch;
-use common\ext\Helpers\DateHelper;
+use app\modules\backend\models\UserCrud\UserCrudSearch;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel UserSearch */
+/* @var $searchModel UserCrudSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Users-Crud';
