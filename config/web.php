@@ -51,6 +51,11 @@ $config = [
             'class' => 'yii\rbac\DbManager',
         ],
     ],
+    'modules' => [
+        'backend' => [
+            'class' => 'app\modules\backend\BackendModule',
+        ],
+    ],
     'params' => $params,
 ];
 

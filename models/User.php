@@ -57,7 +57,7 @@ class User extends ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            [['username'], 'unique'],
+            [['username', 'email'], 'unique'],
         ];
     }
 
