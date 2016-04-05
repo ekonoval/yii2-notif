@@ -3,17 +3,16 @@
 namespace app\modules\backend\controllers;
 
 use app\controllers\BackendController;
-use app\modules\backend\models\UserCrud\UserCrudSave;
-use app\modules\backend\models\UserCrud\UserCrudSearch;
+use app\modules\backend\models\ArticleCrud\ArticleCrudSave;
+use app\modules\backend\models\ArticleCrud\ArticleCrudSearch;
 use Yii;
-use yii\web\NotFoundHttpException;
 
 class ArticleCrudController extends BackendController
 {
 
     public function actionIndex()
     {
-        $searchModel = new UserCrudSearch();
+        $searchModel = new ArticleCrudSearch();
         $dataProvider = $searchModel->search(\Yii::$app->request->post());
 
         return $this->render('index_tpl', [
@@ -22,16 +21,43 @@ class ArticleCrudController extends BackendController
         ]);
     }
 
+    public function actionCreate()
+    {
+        $model = new ArticleCrudSave();
+        $isPostBack = $model->load(Yii::$app->request->post());
+        if ($isPostBack) {
+            $model->author_id = Yii::$app->user->getId();
+        }
+
+        if ($isPostBack && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create_tpl', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $model = ArticleCrudSave::findOne($id);
+        if (!is_null($model)) {
+            $model->delete();
+        }
+
+        return $this->redirect(['index']);
+    }
+
     public function actionUpdate($id)
     {
-        if (($model = UserCrudSave::findOne($id)) === null) {
+        if (($model = ArticleCrudSave::findOne($id)) === null) {
             return $this->redirect(['index']);
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         } else {
-            return $this->render('update_tpl', [
+            return $this->render('create_tpl', [
                 'model' => $model,
             ]);
         }

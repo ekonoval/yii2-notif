@@ -31,7 +31,8 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['author_id', 'title',], 'required'],
-            [['author_id', 'enabled'], 'integer'],
+            [['author_id'], 'integer'],
+            [['enabled'], 'boolean'],
             [['short_text', 'full_text'], 'string'],
             [['title'], 'string', 'max' => 255],
         ];
