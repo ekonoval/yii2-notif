@@ -68,4 +68,14 @@ class Notification extends ActiveRecord
             'body' => 'Body',
         ];
     }
+
+    /**
+     * @return NotificationQuery
+     */
+    public static function find()
+    {
+        return new NotificationQuery(get_called_class());
+    }
+
+
 }

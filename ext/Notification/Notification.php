@@ -1,6 +1,9 @@
 <?php
 namespace ext\Notification;
 
+/**
+ * @deprecated
+ */
 class Notification
 {
 //    const EVENT_USER_REGISTERED = 'EVENT_USER_REGISTERED';
