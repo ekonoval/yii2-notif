@@ -33,12 +33,7 @@ class NfProcessor
         $user = User::findOne($this->notif->sender);
         NfException::ensure(!is_null($user), "Sender not found");
 
-        $sender = [
-            'email' => $user->email,
-            'name' => $user->username
-        ];
-
-        return $sender;
+        return $user;
     }
 
     private function defineReceivers()
@@ -54,10 +49,7 @@ class NfProcessor
 
             /** @var User $user */
             $user = $this->eventSender;
-            $receivers[] = [
-                'name' => $user->username,
-                'email' => $user->email,
-            ];
+            $receivers[] = $user;
 
         } elseif ($receiverId == Notification::RECEIVER_ALL_ID) {
 
