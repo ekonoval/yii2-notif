@@ -1,5 +1,5 @@
 <?php
-namespace ext\Notification;
+namespace app\ext\Notification;
 
 use yii\base\Exception;
 
