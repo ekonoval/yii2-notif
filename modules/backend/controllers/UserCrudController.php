@@ -3,6 +3,7 @@
 namespace app\modules\backend\controllers;
 
 use app\controllers\BackendController;
+use app\models\Notification;
 use app\modules\backend\models\UserCrud\UserCrudSave;
 use app\modules\backend\models\UserCrud\UserCrudSearch;
 use Yii;
@@ -27,6 +28,10 @@ class UserCrudController extends BackendController
         if (($model = UserCrudSave::findOne($id)) === null) {
             return $this->redirect(['index']);
         }
+
+//        $model->on(Notification::EVENT_USER_BLOCKED, function($event){
+//            pa($event);exit;
+//        }, ['custom' => 'data']);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
