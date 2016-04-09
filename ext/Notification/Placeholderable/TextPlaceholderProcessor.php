@@ -1,5 +1,5 @@
 <?php
-namespace ext\Notification\Placeholderable;
+namespace app\ext\Notification\Placeholderable;
 
 use app\ext\Notification\Placeholderable\Decorator\ITextPlaceholderDecorator;
 use app\models\Notification;

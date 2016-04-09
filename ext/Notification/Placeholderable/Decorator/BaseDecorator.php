@@ -1,10 +1,10 @@
 <?php
-namespace ext\Notification\Placeholderable\Decorator;
+namespace app\ext\Notification\Placeholderable\Decorator;
 
 use app\ext\Notification\Placeholderable\Decorator\ITextPlaceholderDecorator;
 use app\models\Notification;
-use ext\Notification\Placeholderable\TextDataContainer;
-use ext\Notification\Placeholderable\TextPlaceholderProcessor;
+use app\ext\Notification\Placeholderable\TextDataContainer;
+use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 
 abstract class BaseDecorator implements ITextPlaceholderDecorator
 {

@@ -3,6 +3,7 @@ namespace app\ext\Notification;
 
 use app\models\Notification;
 use app\models\User;
+use app\ext\Notification\Type\NfEmailTypeProcessor;
 
 class NfProcessor
 {
@@ -24,7 +25,10 @@ class NfProcessor
         $sender = $this->defineSender();
         $receivers = $this->defineReceivers();
 
-        pa($sender, $receivers);
+        //pa($sender, $receivers);
+
+        $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);
+        $nfEmailTypeProcessor->preformDispatch();
     }
 
     private function defineSender()

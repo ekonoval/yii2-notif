@@ -4,19 +4,12 @@ namespace app\ext\Notification\Placeholderable\Decorator;
 use app\models\User;
 use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 
-class UserDecorator extends BaseDecorator
+class UrlDecorator extends BaseDecorator
 {
-    private $user;
-
-    public function __construct(TextPlaceholderProcessor $textPlaceholderProcessor, User $user)
-    {
-        parent::__construct($textPlaceholderProcessor);
-        $this->user = $user;
-
-    }
-
     protected function replacePlaceholders($text)
     {
+        pa(\Yii::$app); exit;
+        
         return strtr($text,
             [
                 '{userName}' => $this->user->username,

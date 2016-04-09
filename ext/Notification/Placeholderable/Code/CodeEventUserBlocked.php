@@ -1,7 +1,7 @@
 <?php
-namespace ext\Notification\Placeholderable\Code;
+namespace app\ext\Notification\Placeholderable\Code;
 
-use ext\Notification\Placeholderable\TextPlaceholderProcessor;
+use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 
 class CodeEventUserBlocked extends TextPlaceholderProcessor
 {

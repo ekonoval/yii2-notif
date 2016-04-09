@@ -1,10 +1,10 @@
 <?php
-namespace ext\Notification\Type;
+namespace app\ext\Notification\Type;
 
 use app\models\Notification;
 use app\models\User;
-use ext\Notification\Placeholderable\Decorator\UserDecorator;
-use ext\Notification\Placeholderable\TextPlaceholderProcessor;
+use app\ext\Notification\Placeholderable\Decorator\UserDecorator;
+use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 use Yii;
 
 class NfEmailTypeProcessor
@@ -33,6 +33,9 @@ class NfEmailTypeProcessor
             $userDecorator = new UserDecorator($textPlaceholderProcessor, $receiver);
             $userDecorator->prepareTextData();
 
+
+            $textDataContainer = $textPlaceholderProcessor->getTextDataContainer();
+            pa($textDataContainer);exit;
 
 //            $mailer->compose()
 //                ->setFrom([$this->userSendFrom->email => $this->userSendFrom->username])
