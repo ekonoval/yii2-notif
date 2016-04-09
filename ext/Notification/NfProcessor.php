@@ -1,6 +1,7 @@
 <?php
 namespace app\ext\Notification;
 
+use app\ext\Notification\Code\CodeEventUserBlocked;
 use app\models\Notification;
 use app\models\User;
 use app\ext\Notification\Type\NfEmailTypeProcessor;
@@ -34,7 +35,7 @@ class NfProcessor
         //pa($sender, $receivers);
 
         if ($this->notif->code == Notification::EVENT_USER_BLOCKED) {
-
+            $codeProcessor = new CodeEventUserBlocked($this->eventRaiserModel, $this->notif, $sender, $receivers);
         }
 
         $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);

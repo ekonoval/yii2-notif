@@ -12,13 +12,16 @@ class CodeEventUserBlocked
     private $userSendFrom;
     private $userReceiversList;
 
+    private $eventRaiserModel;
+
     private $dispatchData;
 
-    public function __construct(Notification $notification, User $userSendFrom, $userReceiversList)
+    public function __construct($eventRaiserModel, Notification $notification, User $userSendFrom, $userReceiversList)
     {
         $this->notif = $notification;
         $this->userSendFrom = $userSendFrom;
         $this->userReceiversList = $userReceiversList;
+        $this->eventRaiserModel = $eventRaiserModel;
     }
 
     public function prepareDispatchData()
@@ -35,7 +38,7 @@ class CodeEventUserBlocked
             $textPlaceholderProcessor = new TextPlaceholderProcessor($this->notif);
             $textPlaceholderProcessor->prepareTextData();
 
-            $userDecorator = new UserDecorator($textPlaceholderProcessor, $receiver);
+            $userDecorator = new UserDecorator($textPlaceholderProcessor, $receiver); //todo eventRaiserModel
             $userDecorator->prepareTextData();
 
             $textDataContainer = $textPlaceholderProcessor->getTextDataContainer();
