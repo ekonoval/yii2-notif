@@ -12,12 +12,18 @@ class NfProcessor
      */
     private $notif;
 
-    private $eventSender;
+    private $eventRaiserModel;
 
-    public function __construct(Notification $notif, $eventSender)
+    /**
+     * TODO - fetch it from real cross table
+     * @var array
+     */
+    private $notifTypes = [Notification::TYPE_EMAIL];
+
+    public function __construct(Notification $notif, $eventRaiserModel)
     {
         $this->notif = $notif;
-        $this->eventSender = $eventSender;
+        $this->eventRaiserModel = $eventRaiserModel;
     }
 
     public function process()
@@ -27,8 +33,12 @@ class NfProcessor
 
         //pa($sender, $receivers);
 
+        if ($this->notif->code == Notification::EVENT_USER_BLOCKED) {
+
+        }
+
         $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);
-        $nfEmailTypeProcessor->preformDispatch();
+        $nfEmailTypeProcessor->prepareDispatchData();
     }
 
     private function defineSender()
@@ -49,11 +59,11 @@ class NfProcessor
         if ($receiverId > 0) {
 
         } elseif ($receiverId == Notification::RECEIVER_OWNER_ID) {
-            NfException::ensure($this->eventSender instanceof User, "Incorrect event sender param for {$this->notif->code}");
+            NfException::ensure($this->eventRaiserModel instanceof User, "Incorrect event sender param for {$this->notif->code}");
 
             /** @var User $user */
-            $user = $this->eventSender;
-            $receivers[] = $user;
+            $user = $this->eventRaiserModel;
+            $receivers[$user->primaryKey] = $user;
 
         } elseif ($receiverId == Notification::RECEIVER_ALL_ID) {
 
