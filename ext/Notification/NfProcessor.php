@@ -36,10 +36,12 @@ class NfProcessor
 
         if ($this->notif->code == Notification::EVENT_USER_BLOCKED) {
             $codeProcessor = new CodeEventUserBlocked($this->eventRaiserModel, $this->notif, $sender, $receivers);
+            $dispatchData = $codeProcessor->prepareDispatchData();
+            pa($dispatchData);exit;
         }
 
-        $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);
-        $nfEmailTypeProcessor->prepareDispatchData();
+//        $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);
+//        $nfEmailTypeProcessor->prepareDispatchData();
     }
 
     private function defineSender()

@@ -1,6 +1,7 @@
 <?php
 namespace app\ext\Notification\Code;
 
+use app\ext\Notification\Dispatch\DispatchData;
 use app\ext\Notification\Placeholderable\Decorator\UserDecorator;
 use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 use app\models\Notification;
@@ -22,15 +23,12 @@ class CodeEventUserBlocked
         $this->userSendFrom = $userSendFrom;
         $this->userReceiversList = $userReceiversList;
         $this->eventRaiserModel = $eventRaiserModel;
+
+        $this->dispatchData = new DispatchData($userSendFrom, $userReceiversList);
     }
 
     public function prepareDispatchData()
     {
-        $this->dispatchData = [
-            'sendFrom' => $this->userSendFrom,
-            'receivers' => $this->userReceiversList,
-            'textDataContainers' => []
-        ];
 
         /** @var User $receiver */
         foreach ($this->userReceiversList as $receiver) {
@@ -38,13 +36,14 @@ class CodeEventUserBlocked
             $textPlaceholderProcessor = new TextPlaceholderProcessor($this->notif);
             $textPlaceholderProcessor->prepareTextData();
 
-            $userDecorator = new UserDecorator($textPlaceholderProcessor, $receiver); //todo eventRaiserModel
+            $userDecorator = new UserDecorator($textPlaceholderProcessor, $this->eventRaiserModel);
             $userDecorator->prepareTextData();
 
             $textDataContainer = $textPlaceholderProcessor->getTextDataContainer();
 
-            $this->dispatchData['textDataContainers'][$receiver->primaryKey] = $textDataContainer;
-
+            $this->dispatchData->textDataContainers[$receiver->primaryKey] = $textDataContainer;
         }
+
+        return $this->dispatchData;
     }
 }
