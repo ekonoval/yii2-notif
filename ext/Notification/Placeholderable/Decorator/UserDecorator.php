@@ -1,18 +1,26 @@
 <?php
 namespace ext\Notification\Placeholderable\Decorator;
 
+use app\models\User;
+use ext\Notification\Placeholderable\TextPlaceholderProcessor;
+
 class UserDecorator extends BaseDecorator
 {
-    public function prepareTextData()
+    private $user;
+
+    public function __construct(TextPlaceholderProcessor $textPlaceholderProcessor, User $user)
     {
+        parent::__construct($textPlaceholderProcessor);
+        $this->user = $user;
 
     }
 
-    private function replacePlaceholders($text)
+    protected function replacePlaceholders($text)
     {
         return strtr($text,
             [
-                '{userName}' => 
+                '{userName}' => $this->user->username,
+                '{userId}' => $this->user->primaryKey
             ]
         );
     }

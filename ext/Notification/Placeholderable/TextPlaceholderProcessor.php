@@ -1,9 +1,10 @@
 <?php
 namespace ext\Notification\Placeholderable;
 
+use app\ext\Notification\Placeholderable\Decorator\ITextPlaceholderDecorator;
 use app\models\Notification;
 
-class TextPlaceholderProcessor
+class TextPlaceholderProcessor implements ITextPlaceholderDecorator
 {
     /**
      * @var Notification
