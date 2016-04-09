@@ -2,6 +2,7 @@
 namespace app\ext\Notification\Placeholderable;
 
 use app\ext\Notification\Placeholderable\Decorator\ITextPlaceholderDecorator;
+use app\ext\Notification\Placeholderable\Decorator\SiteDecorator;
 use app\models\Notification;
 
 class TextPlaceholderProcessor implements ITextPlaceholderDecorator
@@ -24,6 +25,10 @@ class TextPlaceholderProcessor implements ITextPlaceholderDecorator
     public function prepareTextData()
     {
         $this->textDataContainer = new TextDataContainer($this->notif->subject, $this->notif->body);
+
+        // used everywhere
+        $urlDecorator = new SiteDecorator($this);
+        $urlDecorator->prepareTextData();
     }
 
     /**

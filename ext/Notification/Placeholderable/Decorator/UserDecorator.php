@@ -12,7 +12,6 @@ class UserDecorator extends BaseDecorator
     {
         parent::__construct($textPlaceholderProcessor);
         $this->user = $user;
-
     }
 
     protected function replacePlaceholders($text)
