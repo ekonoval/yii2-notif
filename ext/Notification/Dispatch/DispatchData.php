@@ -16,5 +16,4 @@ class DispatchData
         $this->textDataContainers = $textDataContainers;
     }
 
-
 }

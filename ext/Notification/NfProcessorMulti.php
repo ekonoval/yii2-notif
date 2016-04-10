@@ -10,7 +10,7 @@ class NfProcessorMulti
      * @param $eventRaiserModel
      * @return bool
      */
-    public function processEventType($eventType, $eventRaiserModel)
+    public function processEventType($eventType, IAbleToNotify $eventRaiserModel)
     {
         $notifItems = Notification::find()->enabled()->where(['code' => $eventType])->all();
 

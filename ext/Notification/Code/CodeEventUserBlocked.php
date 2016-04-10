@@ -17,6 +17,13 @@ class CodeEventUserBlocked
 
     private $dispatchData;
 
+    /**
+     * CodeEventUserBlocked constructor.
+     * @param $eventRaiserModel
+     * @param Notification $notification
+     * @param User $userSendFrom
+     * @param $userReceiversList
+     */
     public function __construct($eventRaiserModel, Notification $notification, User $userSendFrom, $userReceiversList)
     {
         $this->notif = $notification;
@@ -27,6 +34,9 @@ class CodeEventUserBlocked
         $this->dispatchData = new DispatchData($userSendFrom, $userReceiversList);
     }
 
+    /**
+     * @return DispatchData
+     */
     public function prepareDispatchData()
     {
 

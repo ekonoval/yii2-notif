@@ -7,6 +7,9 @@ use app\ext\Notification\Placeholderable\Decorator\UserDecorator;
 use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 use Yii;
 
+/**
+ * @deprecated
+ */
 class NfEmailTypeProcessor
 {
     private $notif;

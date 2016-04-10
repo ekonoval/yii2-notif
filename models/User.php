@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\ext\Behaviors\MysqlTimestampBehavior;
+use app\ext\Notification\IAbleToNotify;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -19,7 +20,7 @@ use yii\db\ActiveRecord;
  * @property string $created_at
  * @property string $updated_at
  */
-class User extends ActiveRecord
+class User extends ActiveRecord implements IAbleToNotify
 {
 
     const STATUS_BLOCKED = 0;

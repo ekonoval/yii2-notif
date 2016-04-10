@@ -13,6 +13,9 @@ class NfProcessor
      */
     private $notif;
 
+    /**
+     * @var IAbleToNotify
+     */
     private $eventRaiserModel;
 
     /**
@@ -21,7 +24,7 @@ class NfProcessor
      */
     private $notifTypes = [Notification::TYPE_EMAIL];
 
-    public function __construct(Notification $notif, $eventRaiserModel)
+    public function __construct(Notification $notif, IAbleToNotify $eventRaiserModel)
     {
         $this->notif = $notif;
         $this->eventRaiserModel = $eventRaiserModel;
@@ -34,11 +37,15 @@ class NfProcessor
 
         //pa($sender, $receivers);
 
+        $dispatchData = null;
+
         if ($this->notif->code == Notification::EVENT_USER_BLOCKED) {
             $codeProcessor = new CodeEventUserBlocked($this->eventRaiserModel, $this->notif, $sender, $receivers);
             $dispatchData = $codeProcessor->prepareDispatchData();
-            pa($dispatchData);exit;
+            pa($dispatchData); exit;
         }
+
+
 
 //        $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);
 //        $nfEmailTypeProcessor->prepareDispatchData();
