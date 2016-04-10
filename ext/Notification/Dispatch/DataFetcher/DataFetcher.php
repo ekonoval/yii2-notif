@@ -1,5 +1,5 @@
 <?php
-namespace app\ext\Notification\Code;
+namespace app\ext\Notification\Dispatch\DataFetcher;
 
 use app\ext\Notification\Dispatch\DispatchData;
 use app\ext\Notification\Dispatch\DispatchException;
@@ -8,15 +8,15 @@ use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 use app\models\Notification;
 use app\models\User;
 
-class CodeEventUserBlocked
+abstract class DataFetcher
 {
-    private $notif;
-    private $userSendFrom;
-    private $userReceiversList;
+    protected $notif;
+    protected $userSendFrom;
+    protected $userReceiversList;
 
-    private $eventRaiserModel;
+    protected $eventRaiserModel;
 
-    private $dispatchData;
+    protected $dispatchData;
 
     /**
      * CodeEventUserBlocked constructor.
@@ -40,23 +40,22 @@ class CodeEventUserBlocked
     /**
      * @return DispatchData
      */
-    public function prepareDispatchData()
-    {
-
-        /** @var User $receiver */
-        foreach ($this->userReceiversList as $receiver) {
-
-            $textPlaceholderProcessor = new TextPlaceholderProcessor($this->notif);
-            $textPlaceholderProcessor->prepareTextData();
-
-            $userDecorator = new UserDecorator($textPlaceholderProcessor, $this->eventRaiserModel);
-            $userDecorator->prepareTextData();
-
-            $textDataContainer = $textPlaceholderProcessor->getTextDataContainer();
-
-            $this->dispatchData->textDataContainers[$receiver->primaryKey] = $textDataContainer;
-        }
-
-        return $this->dispatchData;
-    }
+    abstract public function prepareDispatchData();
+//    {
+//        /** @var User $receiver */
+//        foreach ($this->userReceiversList as $receiver) {
+//
+//            $textPlaceholderProcessor = new TextPlaceholderProcessor($this->notif);
+//            $textPlaceholderProcessor->prepareTextData();
+//
+//            $userDecorator = new UserDecorator($textPlaceholderProcessor, $this->eventRaiserModel);
+//            $userDecorator->prepareTextData();
+//
+//            $textDataContainer = $textPlaceholderProcessor->getTextDataContainer();
+//
+//            $this->dispatchData->textDataContainers[$receiver->primaryKey] = $textDataContainer;
+//        }
+//
+//        return $this->dispatchData;
+//    }
 }

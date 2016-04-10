@@ -15,6 +15,7 @@ class TestController extends Controller
     public function actionIndex()
     {
         $eventType = Notification::EVENT_USER_BLOCKED;
+        $eventType = Notification::EVENT_USER_REGISTERED;
 
         $nfProcessor = new NfProcessorMulti();
         $nfProcessor->processEventType($eventType, User::findOne(5));
