@@ -1,7 +1,6 @@
 <?php
 namespace app\ext\Notification;
 
-use app\ext\Notification\Code\CodeEventUserBlocked;
 use app\ext\Notification\Dispatch\DataFetcher\ArticleRelated\DataFetcherAricleRelated;
 use app\ext\Notification\Dispatch\DataFetcher\UserRelated\DataFetcherUserRelated;
 use app\ext\Notification\Dispatch\DispatchData;
@@ -42,10 +41,13 @@ class NfProcessor
 
         $userRelatedEvents = [Notification::EVENT_USER_BLOCKED, Notification::EVENT_USER_REGISTERED];
 
+        //--- user related similar events ---//
         if (in_array($this->notif->code, $userRelatedEvents)) {
             $dispatchDataFetcher = new DataFetcherUserRelated($this->eventRaiserModel, $this->notif, $sender, $receivers);
             $dispatchData = $dispatchDataFetcher->prepareDispatchData();
-        } elseif ($this->notif->code == Notification::EVENT_ARTICLE_CREATED) {
+        }
+        //--- article related ---//
+        elseif ($this->notif->code == Notification::EVENT_ARTICLE_CREATED) {
 
             $dispatchDataFetcher = new DataFetcherAricleRelated($this->eventRaiserModel, $this->notif, $sender, $receivers);
             $dispatchData = $dispatchDataFetcher->prepareDispatchData();
@@ -64,8 +66,6 @@ class NfProcessor
         }
 
     }
-
-
 
     private function defineSender()
     {

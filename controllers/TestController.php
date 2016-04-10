@@ -17,11 +17,9 @@ class TestController extends Controller
     {
         $eventType = Notification::EVENT_USER_BLOCKED;
         $eventType = Notification::EVENT_USER_REGISTERED;
-        $eventType = Notification::EVENT_ARTICLE_CREATED;
-
         $raiser = User::findOne(5);
 
-        $raiser = Article::findOne(1);
+        //$eventType = Notification::EVENT_ARTICLE_CREATED; $raiser = Article::findOne(1);
 
         $nfProcessor = new NfProcessorMulti();
         $nfProcessor->processEventType($eventType, $raiser);
