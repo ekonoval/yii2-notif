@@ -6,7 +6,6 @@ use app\ext\Notification\Dispatch\DispatchData;
 use app\ext\Notification\Dispatch\Transport\Email\EmailDispatcher;
 use app\models\Notification;
 use app\models\User;
-use app\ext\Notification\Type\NfEmailTypeProcessor;
 
 class NfProcessor
 {
@@ -37,8 +36,6 @@ class NfProcessor
         $sender = $this->defineSender();
         $receivers = $this->defineReceivers();
 
-        //pa($sender, $receivers);
-
         $dispatchData = null;
 
         if ($this->notif->code == Notification::EVENT_USER_BLOCKED) {
@@ -58,8 +55,6 @@ class NfProcessor
             }
         }
 
-//        $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);
-//        $nfEmailTypeProcessor->prepareDispatchData();
     }
 
     private function defineSender()
