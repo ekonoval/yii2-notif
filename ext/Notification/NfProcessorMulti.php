@@ -5,7 +5,12 @@ use app\models\Notification;
 
 class NfProcessorMulti
 {
-    public function processEventType($eventType, $eventSender)
+    /**
+     * @param $eventType
+     * @param $eventRaiserModel
+     * @return bool
+     */
+    public function processEventType($eventType, IAbleToNotify $eventRaiserModel)
     {
         $notifItems = Notification::find()->enabled()->where(['code' => $eventType])->all();
 
@@ -15,7 +20,7 @@ class NfProcessorMulti
 
         /** @var Notification $nfItem */
         foreach ($notifItems as $nfItem) {
-            $processor = new NfProcessor($nfItem, $eventSender);
+            $processor = new NfProcessor($nfItem, $eventRaiserModel);
             $processor->process();
         }
 

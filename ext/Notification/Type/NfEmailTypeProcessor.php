@@ -7,6 +7,9 @@ use app\ext\Notification\Placeholderable\Decorator\UserDecorator;
 use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 use Yii;
 
+/**
+ * @deprecated
+ */
 class NfEmailTypeProcessor
 {
     private $notif;
@@ -20,7 +23,7 @@ class NfEmailTypeProcessor
         $this->userReceiversList = $userReceiversList;
     }
 
-    public function preformDispatch()
+    public function prepareDispatchData()
     {
         $mailer = Yii::$app->mailer;
 
@@ -32,7 +35,6 @@ class NfEmailTypeProcessor
 
             $userDecorator = new UserDecorator($textPlaceholderProcessor, $receiver);
             $userDecorator->prepareTextData();
-
 
             $textDataContainer = $textPlaceholderProcessor->getTextDataContainer();
             pa($textDataContainer);exit;
