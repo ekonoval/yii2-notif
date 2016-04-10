@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+use app\ext\Notification\IAbleToNotify;
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "article".
@@ -14,7 +16,7 @@ use Yii;
  * @property integer $full_text
  * @property integer $enabled
  */
-class Article extends \yii\db\ActiveRecord
+class Article extends ActiveRecord implements IAbleToNotify
 {
     /**
      * @inheritdoc

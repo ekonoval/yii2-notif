@@ -24,7 +24,10 @@ class ArticleDecorator extends BaseDecorator
             [
                 '{articleName}' => $this->article->title,
                 '{articleShortText}' => $this->article->short_text,
-                '{articleUrl}' => "/article/5",
+                '{articleUrl}' => \Yii::$app->urlManager->createAbsoluteUrl([
+                    "/article/view",
+                    'id' => $this->article->primaryKey
+                ]),
             ]
         );
     }

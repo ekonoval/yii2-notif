@@ -2,6 +2,7 @@
 namespace app\ext\Notification;
 
 use app\ext\Notification\Code\CodeEventUserBlocked;
+use app\ext\Notification\Dispatch\DataFetcher\ArticleRelated\DataFetcherAricleRelated;
 use app\ext\Notification\Dispatch\DataFetcher\UserRelated\DataFetcherUserRelated;
 use app\ext\Notification\Dispatch\DispatchData;
 use app\ext\Notification\Dispatch\Transport\Email\EmailDispatcher;
@@ -44,6 +45,10 @@ class NfProcessor
         if (in_array($this->notif->code, $userRelatedEvents)) {
             $dispatchDataFetcher = new DataFetcherUserRelated($this->eventRaiserModel, $this->notif, $sender, $receivers);
             $dispatchData = $dispatchDataFetcher->prepareDispatchData();
+        } elseif ($this->notif->code == Notification::EVENT_ARTICLE_CREATED) {
+
+            $dispatchDataFetcher = new DataFetcherAricleRelated($this->eventRaiserModel, $this->notif, $sender, $receivers);
+            $dispatchData = $dispatchDataFetcher->prepareDispatchData();
         }
 
         NfException::ensure(
@@ -59,6 +64,8 @@ class NfProcessor
         }
 
     }
+
+
 
     private function defineSender()
     {
