@@ -20,6 +20,6 @@ class EmailAddressee
      */
     public static function getAddresseeByUser(User $user)
     {
-        return static($user->email, $user->username);
+        return new static($user->email, $user->username);
     }
 }

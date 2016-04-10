@@ -18,7 +18,7 @@ abstract class TransportBase
 
     protected function init(){}
 
-    public function process()
+    public function performDispatch()
     {
 
     }

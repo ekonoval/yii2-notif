@@ -2,6 +2,8 @@
 namespace app\ext\Notification;
 
 use app\ext\Notification\Code\CodeEventUserBlocked;
+use app\ext\Notification\Dispatch\DispatchData;
+use app\ext\Notification\Dispatch\Transport\Email\EmailDispatcher;
 use app\models\Notification;
 use app\models\User;
 use app\ext\Notification\Type\NfEmailTypeProcessor;
@@ -42,10 +44,19 @@ class NfProcessor
         if ($this->notif->code == Notification::EVENT_USER_BLOCKED) {
             $codeProcessor = new CodeEventUserBlocked($this->eventRaiserModel, $this->notif, $sender, $receivers);
             $dispatchData = $codeProcessor->prepareDispatchData();
-            pa($dispatchData); exit;
         }
 
+        NfException::ensure(
+            !empty($dispatchData) && $dispatchData instanceof DispatchData,
+            "Invalid dispatchData for notifId [{$this->notif->primaryKey}]"
+        );
 
+        foreach ($this->notifTypes as $notifType) {
+            if ($notifType == Notification::TYPE_EMAIL) {
+                $emailDispatcher = new EmailDispatcher($dispatchData);
+                $emailDispatcher->performDispatch();
+            }
+        }
 
 //        $nfEmailTypeProcessor = new NfEmailTypeProcessor($this->notif, $sender, $receivers);
 //        $nfEmailTypeProcessor->prepareDispatchData();

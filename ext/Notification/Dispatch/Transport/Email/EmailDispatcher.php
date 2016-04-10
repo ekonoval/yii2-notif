@@ -14,7 +14,7 @@ class EmailDispatcher extends TransportBase
         parent::init();
     }
 
-    public function process()
+    public function performDispatch()
     {
         $senderAddressee = EmailAddressee::getAddresseeByUser($this->dispatchData->sendFrom);
 
