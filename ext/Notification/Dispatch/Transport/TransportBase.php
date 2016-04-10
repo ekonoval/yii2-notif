@@ -3,7 +3,7 @@ namespace app\ext\Notification\Dispatch\Transport;
 
 use app\ext\Notification\Dispatch\DispatchData;
 
-class TransportBase
+abstract class TransportBase
 {
     /**
      * @var DispatchData
