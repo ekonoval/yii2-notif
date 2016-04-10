@@ -90,7 +90,7 @@ class NfProcessor
             $receivers[$user->primaryKey] = $user;
 
         } elseif ($receiverId == Notification::RECEIVER_ALL_ID) {
-
+            $receivers = User::find()->indexBy(User::primaryKey()[0])->where(['status' => User::STATUS_ACTIVE])->all();
         }
 
         return $receivers;
