@@ -2,6 +2,7 @@
 namespace app\ext\Notification\Code;
 
 use app\ext\Notification\Dispatch\DispatchData;
+use app\ext\Notification\Dispatch\DispatchException;
 use app\ext\Notification\Placeholderable\Decorator\UserDecorator;
 use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 use app\models\Notification;
@@ -30,6 +31,8 @@ class CodeEventUserBlocked
         $this->userSendFrom = $userSendFrom;
         $this->userReceiversList = $userReceiversList;
         $this->eventRaiserModel = $eventRaiserModel;
+
+        DispatchException::ensure(!empty($userReceiversList), "\$userReceiversList is empty");
 
         $this->dispatchData = new DispatchData($userSendFrom, $userReceiversList);
     }

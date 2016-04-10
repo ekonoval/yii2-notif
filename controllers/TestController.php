@@ -7,6 +7,7 @@ use app\models\Notification;
 use app\models\User;
 use Yii;
 use yii\web\Controller;
+use yii\web\Response;
 
 class TestController extends Controller
 {
@@ -18,6 +19,6 @@ class TestController extends Controller
         $nfProcessor = new NfProcessorMulti();
         $nfProcessor->processEventType($eventType, User::findOne(5));
 
-
+        return new Response();
     }
 }

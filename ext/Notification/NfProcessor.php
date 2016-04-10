@@ -66,6 +66,10 @@ class NfProcessor
         return $user;
     }
 
+    /**
+     * Returnes the list of receivers User models depending on notification receiver field
+     * @return array
+     */
     private function defineReceivers()
     {
         $receivers = [];
@@ -73,6 +77,10 @@ class NfProcessor
 
         // direct user
         if ($receiverId > 0) {
+            /** @var User $user */
+            $user = User::findOne($receiverId);
+            NfException::ensure($user instanceof User, "Can't find receiver with id [{$receiverId}]");
+            $receivers[$user->primaryKey] = $user;
 
         } elseif ($receiverId == Notification::RECEIVER_OWNER_ID) {
             NfException::ensure($this->eventRaiserModel instanceof User, "Incorrect event sender param for {$this->notif->code}");
