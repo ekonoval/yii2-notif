@@ -5,8 +5,21 @@ use app\models\User;
 
 class DispatchData
 {
+    /**
+     * @var User
+     */
     public $sendFrom;
+
+    /**
+     * Array of User-model receivers
+     * @var array
+     */
     public $receivers;
+
+    /**
+     * Array of TextDataContainer indexed by appropriate userId
+     * @var array
+     */
     public $textDataContainers;
 
     public function __construct(User $userSendFrom, $userReceivers, $textDataContainers = [])
