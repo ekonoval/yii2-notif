@@ -102,8 +102,14 @@ class Notification extends ActiveRecord
             self::RECEIVER_ALL_ID => '-все-',
         ];
 
-        $users = ArrayHelper::map(User::find()->all(), User::primaryKey(), 'username');
+        $users = User::getUserOptions();
 
         return $receivers + $users;
     }
+
+    public static function getSendersAvailable()
+    {
+        return User::getUserOptions();
+    }
+
 }

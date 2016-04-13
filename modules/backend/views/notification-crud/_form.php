@@ -17,10 +17,11 @@ use yii\widgets\ActiveForm;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
-    <?= $form->field($model, 'code')->dropDownList(Notification::getEventsList()) ?>
+    <?= $form->field($model, 'code')->dropDownList(Notification::getEventsList(), ['prompt' => '--select--']) ?>
 <? /* ?>    <?= $form->field($model, 'type')->dropDownList(Notification::getTypesList()) ?> <? */ ?>
 
-    <?= $form->field($model, 'receiver')->dropDownList(Notification::getReceiversAvailable()) ?>
+    <?= $form->field($model, 'sender')->dropDownList(Notification::getSendersAvailable(), ['prompt' => '--select--']) ?>
+    <?= $form->field($model, 'receiver')->dropDownList(Notification::getReceiversAvailable(), ['prompt' => '--select--']) ?>
 
     <?= $form->field($model, 'enabled')->checkbox() ?>
     <?= $form->field($model, 'subject')->textInput() ?>

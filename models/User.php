@@ -6,6 +6,7 @@ use app\ext\Behaviors\MysqlTimestampBehavior;
 use app\ext\Notification\IAbleToNotify;
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "user".
@@ -88,5 +89,10 @@ class User extends ActiveRecord implements IAbleToNotify
         return [
             MysqlTimestampBehavior::className(),
         ];
+    }
+
+    public static function getUserOptions()
+    {
+        return ArrayHelper::map(static::find()->all(), static::primaryKey(), 'username');
     }
 }
