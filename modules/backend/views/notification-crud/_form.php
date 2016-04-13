@@ -16,10 +16,10 @@ use yii\widgets\ActiveForm;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
-    <?= $form->field($model, 'short_text')->textarea() ?>
-    <?= $form->field($model, 'full_text')->textarea() ?>
 
     <?= $form->field($model, 'enabled')->checkbox() ?>
+    <?= $form->field($model, 'subject')->textInput() ?>
+    <?= $form->field($model, 'body')->textarea(['rows' => 5]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update',

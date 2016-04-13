@@ -3,6 +3,7 @@
 namespace app\modules\backend\controllers;
 
 use app\controllers\BackendController;
+use app\modules\backend\models\NotifCrud\NotifCrudSave;
 use app\modules\backend\models\NotifCrud\NotifCrudSearch;
 use Yii;
 
@@ -48,20 +49,20 @@ class NotificationCrudController extends BackendController
 //
 //        return $this->redirect(['index']);
 //    }
-//
-//    public function actionUpdate($id)
-//    {
-//        if (($model = ArticleCrudSave::findOne($id)) === null) {
-//            return $this->redirect(['index']);
-//        }
-//
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['index']);
-//        } else {
-//            return $this->render('create_tpl', [
-//                'model' => $model,
-//            ]);
-//        }
-//    }
+
+    public function actionUpdate($id)
+    {
+        if (($model = NotifCrudSave::findOne($id)) === null) {
+            return $this->redirect(['index']);
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create_tpl', [
+                'model' => $model,
+            ]);
+        }
+    }
 
 }
