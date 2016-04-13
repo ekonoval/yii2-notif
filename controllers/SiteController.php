@@ -18,10 +18,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'cabinet'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'cabinet'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -108,5 +108,10 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionCabinet()
+    {
+        return $this->render('cabinet_tpl');
     }
 }

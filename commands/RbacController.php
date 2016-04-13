@@ -2,6 +2,7 @@
 namespace app\commands;
 
 use app\ext\User\UserIdentity;
+use app\models\User;
 use Yii;
 use yii\console\Controller;
 use yii\rbac\DbManager;
@@ -28,6 +29,10 @@ class RbacController extends Controller
         $auth->add($admin);
         $auth->addChild($admin, $user);
 
-        $auth->assign($admin, 1); //taken from migration init
+        $auth->assign($admin, 1); //taken from migration users
+        $auth->assign($admin, 2);
+
+        $auth->assign($user, 3);
+        $auth->assign($user, 4);
     }
 }
