@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "notification".
@@ -77,5 +78,32 @@ class Notification extends ActiveRecord
         return new NotificationQuery(get_called_class());
     }
 
+    public static function getEventsList()
+    {
+        return [
+            self::EVENT_USER_REGISTERED => "регистрация юзера",
+            self::EVENT_USER_BLOCKED => "блокировка юзера",
+            self::EVENT_ARTICLE_CREATED => "статья создана",
+        ];
+    }
 
+    public static function getTypesList()
+    {
+        return [
+            self::TYPE_EMAIL => 'email',
+            self::TYPE_BROWSER => 'браузер',
+        ];
+    }
+
+    public static function getReceiversAvailable()
+    {
+        $receivers = [
+            self::RECEIVER_OWNER_ID => '-владелец-',
+            self::RECEIVER_ALL_ID => '-все-',
+        ];
+
+        $users = ArrayHelper::map(User::find()->all(), User::primaryKey(), 'username');
+
+        return $receivers + $users;
+    }
 }

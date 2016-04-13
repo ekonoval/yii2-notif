@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Notification;
 use app\modules\backend\models\UserCrud\UserCrudSave;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -16,6 +17,10 @@ use yii\widgets\ActiveForm;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'code')->dropDownList(Notification::getEventsList()) ?>
+<? /* ?>    <?= $form->field($model, 'type')->dropDownList(Notification::getTypesList()) ?> <? */ ?>
+
+    <?= $form->field($model, 'receiver')->dropDownList(Notification::getReceiversAvailable()) ?>
 
     <?= $form->field($model, 'enabled')->checkbox() ?>
     <?= $form->field($model, 'subject')->textInput() ?>
