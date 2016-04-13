@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Article;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class ArticleController extends Controller
 {
@@ -14,7 +16,13 @@ class ArticleController extends Controller
 
     public function actionView($id)
     {
-        pa($id); exit;
+        $article = Article::findOne($id);
+
+        if (empty($article)) {
+            throw new NotFoundHttpException("No article");
+        }
+
+        return $this->render('view_tpl', ['article' => $article]);
     }
 
 

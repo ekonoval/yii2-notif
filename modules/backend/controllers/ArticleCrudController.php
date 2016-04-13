@@ -27,6 +27,8 @@ class ArticleCrudController extends BackendController
         $isPostBack = $model->load(Yii::$app->request->post());
         if ($isPostBack) {
             $model->author_id = Yii::$app->user->getId();
+        } else {
+            $model->enabled = 1;
         }
 
         if ($isPostBack && $model->save()) {
