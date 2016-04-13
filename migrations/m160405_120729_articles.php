@@ -20,10 +20,10 @@ class m160405_120729_articles extends Migration
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
         ");
 
-        $this->execute("
-            INSERT INTO `article` (`id`, `author_id`, `title`, `short_text`, `full_text`, `enabled`) VALUES
-            (1, 1, 'fake1', 'Анонсируя концерт, к названию группы можно добавить любой эпитет и одним он покажется слишком сухим, другим - слишком общим, третьим - просто лишним. Это тот случай, когда достаточно только имени - Океан Ельзи.', '', 0);
-        ");
+//        $this->execute("
+//            INSERT INTO `article` (`id`, `author_id`, `title`, `short_text`, `full_text`, `enabled`) VALUES
+//            (1, 1, 'fake1', 'Анонсируя концерт, к названию группы можно добавить любой эпитет и одним он покажется слишком сухим, другим - слишком общим, третьим - просто лишним. Это тот случай, когда достаточно только имени - Океан Ельзи.', '', 0);
+//        ");
     }
 
     public function safeDown()
