@@ -16,9 +16,10 @@ class ArticleController extends Controller
 
     public function actionView($id)
     {
+        /** @var Article $article */
         $article = Article::findOne($id);
 
-        if (empty($article)) {
+        if (empty($article) || !$article->enabled) {
             throw new NotFoundHttpException("No article");
         }
 
