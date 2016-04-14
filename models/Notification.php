@@ -43,7 +43,12 @@ class Notification extends ActiveRecord
 
     public function getTypes()
     {
-        return $this->hasMany(NotificationToType::class, ['notif_id' => 'id'])->indexBy('type')->asArray();
+        return $this->hasMany(NotificationToType::class, ['notif_id' => 'id'])->indexBy('type');
+    }
+
+    public function getTypeIdsRelated()
+    {
+        return ArrayHelper::map($this->types, 'type', 'type');
     }
 
     /**

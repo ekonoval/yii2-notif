@@ -6,9 +6,6 @@ use app\models\NotificationToType;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 
-/**
- * {@inheritdoc}
- */
 class NotifCrudSave extends Notification
 {
     public $typeIdsRelated;
@@ -38,6 +35,16 @@ class NotifCrudSave extends Notification
         $transes[$this->scenario] = self::OP_ALL;
 
         return $transes;
+    }
+
+    public function afterFind()
+    {
+        parent::afterFind();
+
+        //--- preload selected types on edit ---//
+        if (!$this->isNewRecord) {
+            $this->typeIdsRelated = $this->getTypeIdsRelated();
+        }
     }
 
     public function afterSave($insert, $changedAttributes)

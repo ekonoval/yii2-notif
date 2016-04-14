@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
     <?php //pa($model->getTypesDropdownOptions()); ?>
     <?php $form = ActiveForm::begin(['enableClientValidation'=>false]); ?>
 
-    <?= $form->errorSummary($model); ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update',
             ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']
