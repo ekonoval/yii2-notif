@@ -1,9 +1,8 @@
 <?php
 
-use app\models\User;
+use app\ext\Grid\BooleanColumn;
 use app\modules\backend\models\NotifCrud\NotifCrudSearch;
 use app\modules\backend\models\UserCrud\ArticleCrudSearch;
-use app\modules\backend\models\UserCrud\UserCrudSearch;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
@@ -37,9 +36,19 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/ba
             ],
             'id',
             'title',
-            'code',
+            [
+                'attribute' => 'code',
+                'value' => function ($data) use ($searchModel) {
+                    return $searchModel::getEventName($data->code);
+                },
+                'filter' => $searchModel::getEventsList()
+            ],
             'subject',
-            'enabled',
+            [
+                'attribute' => 'enabled',
+                'class' => BooleanColumn::className(),
+                //'filterInputOptions' => ['class' => 'form-control']
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

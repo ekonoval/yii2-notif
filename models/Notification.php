@@ -99,6 +99,16 @@ class Notification extends ActiveRecord
         ];
     }
 
+    public static function getEventName($code)
+    {
+        static $events;
+        if (!$events) {
+            $events = self::getEventsList();
+        }
+
+        return array_key_exists($code, $events) ? $events[$code] : '-error-';
+    }
+
     public static function getTypeNamesAvailable()
     {
         return [

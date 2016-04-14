@@ -1,5 +1,6 @@
 <?php
 
+use app\ext\Grid\BooleanColumn;
 use app\models\User;
 use app\modules\backend\models\UserCrud\ArticleCrudSearch;
 use app\modules\backend\models\UserCrud\UserCrudSearch;
@@ -38,7 +39,10 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/ba
             'title',
             'short_text',
             //'full_text',
-            'enabled',
+            [
+                'attribute' => 'enabled',
+                'class' => BooleanColumn::className(),
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',
