@@ -20,7 +20,6 @@ class UserCrudSave extends User
         return $behaviors;
     }
 
-
     public function afterFind()
     {
         parent::afterFind();
@@ -32,10 +31,8 @@ class UserCrudSave extends User
     {
         parent::afterSave($insert, $changedAttributes);
 
-        $this->trigger(Notification::EVENT_USER_BLOCKED);
-
         if ($this->status == UserIdentity::STATUS_BLOCKED && $this->oldStatus != $this->status) {
-//            $this->trigger(Notification::EVENT_USER_BLOCKED);
+            $this->trigger(Notification::EVENT_USER_BLOCKED);
         }
     }
 
