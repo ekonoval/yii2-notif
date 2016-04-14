@@ -16,8 +16,8 @@ class TestController extends Controller
     public function actionIndex()
     {
         $eventType = Notification::EVENT_USER_BLOCKED;
-        $eventType = Notification::EVENT_USER_REGISTERED;
-        $raiser = User::findOne(5);
+//        $eventType = Notification::EVENT_USER_REGISTERED;
+        $raiser = User::findOne(1);
 
         //$eventType = Notification::EVENT_ARTICLE_CREATED; $raiser = Article::findOne(1);
 

@@ -23,6 +23,9 @@ use yii\db\ActiveRecord;
  */
 class NotificationBrowserDispatch extends ActiveRecord
 {
+    const STATUS_UNREAD = 1;
+    const STATUS_READ = 2;
+
     /**
      * @inheritdoc
      */

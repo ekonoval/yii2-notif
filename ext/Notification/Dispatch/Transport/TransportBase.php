@@ -4,6 +4,7 @@ namespace app\ext\Notification\Dispatch\Transport;
 use app\ext\Notification\Dispatch\DispatchData;
 use app\ext\Notification\Dispatch\DispatchException;
 use app\ext\Notification\Placeholderable\TextDataContainer;
+use app\models\Notification;
 use app\models\User;
 
 abstract class TransportBase
@@ -13,9 +14,15 @@ abstract class TransportBase
      */
     protected $dispatchData;
 
-    public function __construct(DispatchData $dispatchData)
+    /**
+     * @var Notification
+     */
+    protected $notif;
+
+    public function __construct(DispatchData $dispatchData, Notification $notif)
     {
         $this->dispatchData = $dispatchData;
+        $this->notif = $notif;
         $this->init();
     }
 

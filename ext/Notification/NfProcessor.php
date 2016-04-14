@@ -4,6 +4,7 @@ namespace app\ext\Notification;
 use app\ext\Notification\Dispatch\DataFetcher\ArticleRelated\DataFetcherAricleRelated;
 use app\ext\Notification\Dispatch\DataFetcher\UserRelated\DataFetcherUserRelated;
 use app\ext\Notification\Dispatch\DispatchData;
+use app\ext\Notification\Dispatch\Transport\Browser\BrowserDispatcher;
 use app\ext\Notification\Dispatch\Transport\Email\EmailDispatcher;
 use app\models\Notification;
 use app\models\User;
@@ -24,14 +25,14 @@ class NfProcessor
     private $eventRaiserModel;
 
     /**
-     * TODO - fetch it from real cross table
      * @var array
      */
-    private $notifTypes = [Notification::TYPE_EMAIL];
+    private $notifTypes;
 
     public function __construct(Notification $notif, IAbleToNotify $eventRaiserModel)
     {
         $this->notif = $notif;
+        $this->notifTypes = $this->notif->getTypeIdsRelated();
         $this->eventRaiserModel = $eventRaiserModel;
     }
 
@@ -62,10 +63,11 @@ class NfProcessor
 
         foreach ($this->notifTypes as $notifType) {
             if ($notifType == Notification::TYPE_EMAIL) {
-                $emailDispatcher = new EmailDispatcher($dispatchData);
+                $emailDispatcher = new EmailDispatcher($dispatchData, $this->notif);
                 $emailDispatcher->performDispatch();
             } elseif ($notifType == Notification::TYPE_BROWSER) {
-
+                $browserDispatcher = new BrowserDispatcher($dispatchData, $this->notif);
+                $browserDispatcher->performDispatch();
             }
         }
 
