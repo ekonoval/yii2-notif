@@ -32,6 +32,7 @@ class TextPlaceholderProcessor implements ITextPlaceholderDecorator
     }
 
     /**
+     * Must be called after all decorators been applied to get prepared in all ways $textDataContainer
      * @return TextDataContainer
      */
     public function getTextDataContainer()

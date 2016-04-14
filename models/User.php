@@ -19,7 +19,6 @@ use yii\helpers\ArrayHelper;
  * @property string $email
  * @property integer $status
  * @property string $created_at
- * @property string $updated_at
  */
 class User extends ActiveRecord implements IAbleToNotify
 {
@@ -56,7 +55,7 @@ class User extends ActiveRecord implements IAbleToNotify
         return [
             [['username', 'auth_key', 'password_hash', 'email', 'status'], 'required'],
             [['status'], 'integer'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['created_at'], 'safe'],
             [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username', 'email'], 'unique'],

@@ -7,23 +7,24 @@ use yii\base\Event;
 
 class NfBehavior extends Behavior
 {
-    public $eventsToListen;
+    const NAME = "notifBehavior";
+
+    //public $eventsToListen;
 
     public function events()
     {
         $events = [
-            Notification::EVENT_USER_BLOCKED => 'handleUserBlocked'
+            Notification::EVENT_USER_BLOCKED => 'handleEvent',
+            Notification::EVENT_USER_REGISTERED => 'handleEvent',
+            Notification::EVENT_ARTICLE_CREATED => 'handleEvent',
         ];
 
         return $events;
     }
 
-    public function handleUserBlocked(Event $event)
+    public function handleEvent(Event $event)
     {
         $nfProcessorMuli = new NfProcessorMulti();
-        $nfProcessorMuli->processEventType(Notification::EVENT_USER_BLOCKED, $event->sender);
-
-        pa($event);exit;
-//        pa($event);exit;
+        $nfProcessorMuli->processEventType($event->name, $event->sender);
     }
 }

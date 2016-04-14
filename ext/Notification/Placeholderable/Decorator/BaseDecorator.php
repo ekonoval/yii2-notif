@@ -1,8 +1,6 @@
 <?php
 namespace app\ext\Notification\Placeholderable\Decorator;
 
-use app\ext\Notification\Placeholderable\Decorator\ITextPlaceholderDecorator;
-use app\models\Notification;
 use app\ext\Notification\Placeholderable\TextDataContainer;
 use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 

@@ -7,7 +7,7 @@ class NfProcessorMulti
 {
     /**
      * @param $eventType
-     * @param $eventRaiserModel
+     * @param IAbleToNotify $eventRaiserModel
      * @return bool
      */
     public function processEventType($eventType, IAbleToNotify $eventRaiserModel)

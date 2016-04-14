@@ -2,13 +2,21 @@
 
 namespace app\models;
 
+use app\ext\Notification\NfBehavior;
 use app\ext\User\UserIdentity;
 use Yii;
-use yii\base\Model;
 
 class SignupForm extends User
 {
     public $password;
+
+    public function init()
+    {
+        parent::init();
+
+        $this->attachBehavior(NfBehavior::NAME, NfBehavior::class);
+    }
+
 
     /**
      * @return array the validation rules.
@@ -34,7 +42,9 @@ class SignupForm extends User
                 Yii::$app->user->login(UserIdentity::findIdentity($this->primaryKey));
 
                 $auth = Yii::$app->authManager;
-                $auth->assign($auth->getRole(UserIdentity::ROLE_USER), $this->primaryKey);
+                $auth->assign($auth->getRole(UserIdentity::ROLE_USER), $this->primaryKey); //!!
+
+                $this->trigger(Notification::EVENT_USER_REGISTERED);
             }
 
             return true;

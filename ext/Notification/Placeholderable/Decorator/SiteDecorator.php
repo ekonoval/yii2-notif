@@ -1,9 +1,6 @@
 <?php
 namespace app\ext\Notification\Placeholderable\Decorator;
 
-use app\models\User;
-use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
-
 class SiteDecorator extends BaseDecorator
 {
     protected function replacePlaceholders($text)
@@ -11,6 +8,7 @@ class SiteDecorator extends BaseDecorator
         return strtr($text,
             [
                 '{siteName}' => $_SERVER['HTTP_HOST'],
+                '{siteUrl}' => \Yii::$app->urlManager->createAbsoluteUrl('/'),
             ]
         );
     }
