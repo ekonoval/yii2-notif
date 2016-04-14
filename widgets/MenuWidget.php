@@ -20,6 +20,7 @@ class MenuWidget extends Nav
             if (Yii::$app->user->can(UserIdentity::ROLE_ADMIN)) {
                 $this->items[] = ['label' => 'Articles', 'url' => ['/backend/article-crud/']];
                 $this->items[] = ['label' => 'Users', 'url' => ['/backend/user-crud/']];
+                $this->items[] = ['label' => 'Notifications', 'url' => ['/backend/notification-crud/']];
             }
 
 

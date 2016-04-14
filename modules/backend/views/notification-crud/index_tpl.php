@@ -1,20 +1,19 @@
 <?php
 
 use app\ext\Grid\BooleanColumn;
-use app\models\User;
+use app\modules\backend\models\NotifCrud\NotifCrudSearch;
 use app\modules\backend\models\UserCrud\ArticleCrudSearch;
-use app\modules\backend\models\UserCrud\UserCrudSearch;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel ArticleCrudSearch */
+/* @var $searchModel NotifCrudSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
-$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/backend/article-crud')];
+$this->title = 'Notifications';
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/backend/notification-crud')];
 
 ?>
 
@@ -23,7 +22,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/ba
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Article', ['create'], ['class' => 'btn-sm btn-success']) ?>
+        <?= Html::a('Create Notification', ['create'], ['class' => 'btn-sm btn-success']) ?>
     </p>
 
     <?php Pjax::begin(['id' => 'admin-crud-id', 'timeout' => false, 'enablePushState' => false, 'clientOptions' => ['method' => 'POST']]) ?>
@@ -37,11 +36,18 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/ba
             ],
             'id',
             'title',
-            'short_text',
-            //'full_text',
+            [
+                'attribute' => 'code',
+                'value' => function ($data) use ($searchModel) {
+                    return $searchModel::getEventName($data->code);
+                },
+                'filter' => $searchModel::getEventsList()
+            ],
+            'subject',
             [
                 'attribute' => 'enabled',
                 'class' => BooleanColumn::className(),
+                //'filterInputOptions' => ['class' => 'form-control']
             ],
 
             [

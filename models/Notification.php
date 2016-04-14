@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "notification".
@@ -16,6 +17,8 @@ use yii\db\ActiveRecord;
  * @property integer $enabled
  * @property string $subject
  * @property string $body
+ *
+ * @property array $types
  */
 class Notification extends ActiveRecord
 {
@@ -36,6 +39,16 @@ class Notification extends ActiveRecord
     public static function tableName()
     {
         return 'notification';
+    }
+
+    public function getTypes()
+    {
+        return $this->hasMany(NotificationToType::class, ['notif_id' => 'id'])->indexBy('type');
+    }
+
+    public function getTypeIdsRelated()
+    {
+        return ArrayHelper::map($this->types, 'type', 'type');
     }
 
     /**
@@ -77,5 +90,48 @@ class Notification extends ActiveRecord
         return new NotificationQuery(get_called_class());
     }
 
+    public static function getEventsList()
+    {
+        return [
+            self::EVENT_USER_REGISTERED => "регистрация юзера",
+            self::EVENT_USER_BLOCKED => "блокировка юзера",
+            self::EVENT_ARTICLE_CREATED => "статья создана",
+        ];
+    }
+
+    public static function getEventName($code)
+    {
+        static $events;
+        if (!$events) {
+            $events = self::getEventsList();
+        }
+
+        return array_key_exists($code, $events) ? $events[$code] : '-error-';
+    }
+
+    public static function getTypeNamesAvailable()
+    {
+        return [
+            self::TYPE_EMAIL => 'email',
+            self::TYPE_BROWSER => 'браузер',
+        ];
+    }
+
+    public static function getReceiversAvailable()
+    {
+        $receivers = [
+            self::RECEIVER_OWNER_ID => '-владелец-',
+            self::RECEIVER_ALL_ID => '-все-',
+        ];
+
+        $users = User::getUserOptions();
+
+        return $receivers + $users;
+    }
+
+    public static function getSendersAvailable()
+    {
+        return User::getUserOptions();
+    }
 
 }
