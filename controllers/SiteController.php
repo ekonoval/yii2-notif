@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\web\Response;
 
 class SiteController extends Controller
 {
@@ -121,12 +122,31 @@ class SiteController extends Controller
                     //'status' => NotificationBrowserDispatch::STATUS_UNREAD,
                     'receiver_id' => Yii::$app->user->id
                 ])
-                ->orderBy('id DESC'),
+                ->orderBy('status ASC, id DESC'),
             'pagination' => [
                 'pageSize' => 2,
             ],
         ]);
 
         return $this->render('cabinet_tpl', ['dataProvider' => $dataProvider]);
+    }
+
+    public function actionCabinetAjax($cmd, $id)
+    {
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $res = [];
+
+        if ($cmd == 'msgMarkRead') {
+            /** @var NotificationBrowserDispatch $model */
+            $model = NotificationBrowserDispatch::findOne($id);
+            if ($model && $model->receiver_id == Yii::$app->user->id) {
+                $model->status = $model::STATUS_READ;
+                $model->save();
+            }
+
+            $res['res'] = 'ok';
+        }
+
+        return $res;
     }
 }
