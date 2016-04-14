@@ -17,6 +17,8 @@ use yii\helpers\ArrayHelper;
  * @property integer $enabled
  * @property string $subject
  * @property string $body
+ *
+ * @property array $types - related notification types
  */
 class Notification extends ActiveRecord
 {
@@ -37,6 +39,11 @@ class Notification extends ActiveRecord
     public static function tableName()
     {
         return 'notification';
+    }
+
+    public function getTypes()
+    {
+        return $this->hasMany(NotificationToType::class, ['notif_id' => 'id'])->asArray();
     }
 
     /**

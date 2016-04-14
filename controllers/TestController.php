@@ -26,4 +26,11 @@ class TestController extends Controller
 
         return new Response();
     }
+
+    public function actionJunction()
+    {
+        $res = Notification::findOne(1);
+
+        pa($res->types);
+    }
 }
