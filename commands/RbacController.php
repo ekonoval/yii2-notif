@@ -29,6 +29,7 @@ class RbacController extends Controller
         $auth->add($admin);
         $auth->addChild($admin, $user);
 
+        //#------------------- assing roles to users -------------------#//
         $auth->assign($admin, 1); //taken from migration users
         $auth->assign($admin, 2);
 

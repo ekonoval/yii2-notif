@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\ext\Behaviors\MysqlTimestampBehavior;
 use app\ext\Notification\IAbleToNotify;
+use app\models\Query\UserQuery;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -78,6 +79,14 @@ class User extends ActiveRecord implements IAbleToNotify
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    /**
+     * @return UserQuery
+     */
+    public static function find()
+    {
+        return new UserQuery(get_called_class());
     }
 
     /**
