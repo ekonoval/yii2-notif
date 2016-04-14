@@ -1,4 +1,6 @@
-Perform the following actions
+Perform the following actions:
+
+- composer install
 
 - copy /config/db.php.original -> /config/db.php and configure db setting
 
@@ -6,7 +8,7 @@ Perform the following actions
 
 - php yii migrate
 
-- php yii rbac/init
-    to assign role for test users
+- php yii rbac/init  (to assign roles for test users)
+
 
 
