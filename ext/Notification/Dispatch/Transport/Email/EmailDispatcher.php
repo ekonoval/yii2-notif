@@ -23,14 +23,7 @@ class EmailDispatcher extends TransportBase
 
         /** @var User $receiver */
         foreach ($this->dispatchData->receivers as $receiver) {
-            $receiverUid = $receiver->primaryKey;
-            DispatchException::ensure(
-                isset($this->dispatchData->textDataContainers[$receiverUid]),
-                "Can't find TextDataContainer for uid [{$receiverUid}]"
-            );
-
-            /** @var TextDataContainer $textDataContainer */
-            $textDataContainer = $this->dispatchData->textDataContainers[$receiverUid];
+            $textDataContainer = $this->getTextDataContainer($receiver);
 
             $receiverAddressee = EmailAddressee::getAddresseeByUser($receiver);
             $mailer->compose()
