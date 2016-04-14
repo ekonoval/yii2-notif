@@ -1,6 +1,7 @@
 <?php
 
 use app\ext\Grid\BooleanColumn;
+use app\models\Notification;
 use app\modules\backend\models\NotifCrud\NotifCrudSearch;
 use app\modules\backend\models\UserCrud\ArticleCrudSearch;
 use yii\helpers\Html;
@@ -15,6 +16,13 @@ use yii\widgets\Pjax;
 $this->title = 'Notifications';
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/backend/notification-crud')];
 
+$receiversAll = $searchModel->getReceiversAvailable();
+
+$sendersAll = array_filter($receiversAll, function($key){
+        return !in_array($key, [Notification::RECEIVER_OWNER_ID, Notification::RECEIVER_ALL_ID]);
+    },
+    ARRAY_FILTER_USE_KEY
+);
 ?>
 
 <div class="users-list">
@@ -42,6 +50,20 @@ $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => Url::to('/ba
                     return $searchModel::getEventName($data->code);
                 },
                 'filter' => $searchModel::getEventsList()
+            ],
+            [
+                'attribute' => 'sender',
+                'value' => function ($data) use ($searchModel, $sendersAll) {
+                    return array_key_exists($data->sender, $sendersAll) ? $sendersAll[$data->sender] : 'err';
+                },
+                'filter' => $sendersAll
+            ],
+            [
+                'attribute' => 'receiver',
+                'value' => function ($data) use ($searchModel, $receiversAll) {
+                    return array_key_exists($data->receiver, $receiversAll) ? $receiversAll[$data->receiver] : 'err';
+                },
+                'filter' => $receiversAll
             ],
             'subject',
             [

@@ -32,11 +32,14 @@ class NotifCrudSearch extends Notification
 
         $query->andFilterWhere([
             'id' => $this->id,
+            'code' => $this->code,
+            'sender' => $this->sender,
+            'receiver' => $this->receiver,
             'enabled' => $this->enabled,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title]);
-        $query->andFilterWhere(['like', 'code', $this->code]);
+        $query->andFilterWhere(['like', 'subject', $this->subject]);
 
         return $dataProvider;
     }
