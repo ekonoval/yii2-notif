@@ -3,8 +3,6 @@ namespace app\modules\backend\models\NotifCrud;
 
 use app\models\Notification;
 use app\models\NotificationToType;
-use yii\base\Exception;
-use yii\data\ActiveDataProvider;
 
 class NotifCrudSave extends Notification
 {
@@ -24,6 +22,15 @@ class NotifCrudSave extends Notification
 
         return $rules;
     }
+
+    public function attributeLabels()
+    {
+        $labels =  parent::attributeLabels();
+        $labels['typeIdsRelated'] = 'Types';
+
+        return $labels;
+    }
+
 
     /**
      * Wrap save operations in transactions

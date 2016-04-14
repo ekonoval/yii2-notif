@@ -6,6 +6,14 @@ use yii\data\ActiveDataProvider;
 
 class NotifCrudSearch extends Notification
 {
+    public function rules()
+    {
+        return [
+            [['code', 'title', 'subject', 'enabled'], 'safe'],
+            [['sender', 'receiver', 'enabled'], 'integer'],
+        ];
+    }
+
 
     public function search($params)
     {
