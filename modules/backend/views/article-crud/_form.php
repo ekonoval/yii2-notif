@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
     <?= $form->field($model, 'short_text')->textarea() ?>
-    <?= $form->field($model, 'full_text')->textarea() ?>
+    <?= $form->field($model, 'full_text')->textarea(['rows' => 10]) ?>
 
     <?= $form->field($model, 'enabled')->checkbox() ?>
 
