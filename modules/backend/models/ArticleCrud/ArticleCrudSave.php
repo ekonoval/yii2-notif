@@ -16,7 +16,10 @@ class ArticleCrudSave extends Article
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        $this->trigger(Notification::EVENT_ARTICLE_CREATED);
+
+        if ($insert) {
+            $this->trigger(Notification::EVENT_ARTICLE_CREATED);
+        }
     }
 
 

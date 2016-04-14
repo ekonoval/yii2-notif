@@ -28,7 +28,7 @@ Alert::begin([
 
         <br>
         <div class="message">
-            <?=$model->body ?>
+            <?=nl2br($model->body) ?>
         </div>
     </article>
 
