@@ -8,6 +8,9 @@ use app\ext\Notification\Dispatch\Transport\Email\EmailDispatcher;
 use app\models\Notification;
 use app\models\User;
 
+/**
+ * Processes and dispatches single notification
+ */
 class NfProcessor
 {
     /**
@@ -48,7 +51,6 @@ class NfProcessor
         }
         //--- article related ---//
         elseif ($this->notif->code == Notification::EVENT_ARTICLE_CREATED) {
-
             $dispatchDataFetcher = new DataFetcherAricleRelated($this->eventRaiserModel, $this->notif, $sender, $receivers);
             $dispatchData = $dispatchDataFetcher->prepareDispatchData();
         }
@@ -62,6 +64,8 @@ class NfProcessor
             if ($notifType == Notification::TYPE_EMAIL) {
                 $emailDispatcher = new EmailDispatcher($dispatchData);
                 $emailDispatcher->performDispatch();
+            } elseif ($notifType == Notification::TYPE_BROWSER) {
+
             }
         }
 

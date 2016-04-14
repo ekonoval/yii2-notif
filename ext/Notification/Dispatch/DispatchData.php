@@ -12,7 +12,7 @@ class DispatchData
 
     /**
      * Array of User-model receivers
-     * @var array
+     * @var User[]
      */
     public $receivers;
 

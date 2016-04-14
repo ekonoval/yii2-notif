@@ -2,6 +2,9 @@
 namespace app\ext\Notification\Dispatch\Transport;
 
 use app\ext\Notification\Dispatch\DispatchData;
+use app\ext\Notification\Dispatch\DispatchException;
+use app\ext\Notification\Placeholderable\TextDataContainer;
+use app\models\User;
 
 abstract class TransportBase
 {
@@ -21,6 +24,21 @@ abstract class TransportBase
     public function performDispatch()
     {
 
+    }
+
+    /**
+     * @param User $receiver
+     * @return TextDataContainer
+     */
+    protected function getTextDataContainer(User $receiver)
+    {
+        $receiverUid = $receiver->primaryKey;
+        DispatchException::ensure(
+            isset($this->dispatchData->textDataContainers[$receiverUid]),
+            "Can't find TextDataContainer for uid [{$receiverUid}]"
+        );
+
+        return $this->dispatchData->textDataContainers[$receiverUid];
     }
 
 }
