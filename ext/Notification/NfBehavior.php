@@ -7,6 +7,8 @@ use yii\base\Event;
 
 class NfBehavior extends Behavior
 {
+    const NAME = "notifBehavior";
+
     //public $eventsToListen;
 
     public function events()

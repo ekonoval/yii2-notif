@@ -10,15 +10,21 @@ class UserCrudSave extends User
 {
     private $oldStatus;
 
-    public function behaviors()
+    public function init()
     {
-        $behaviors = parent::behaviors();
-        $behaviors[] = [
-            'class' => NfBehavior::class
-        ];
-
-        return $behaviors;
+        parent::init();
+        $this->attachBehavior(NfBehavior::NAME, NfBehavior::class);
     }
+
+//    public function behaviors()
+//    {
+//        $behaviors = parent::behaviors();
+//        $behaviors[] = [
+//            'class' => NfBehavior::class
+//        ];
+//
+//        return $behaviors;
+//    }
 
     public function afterFind()
     {
