@@ -11,6 +11,7 @@ class SiteDecorator extends BaseDecorator
         return strtr($text,
             [
                 '{siteName}' => $_SERVER['HTTP_HOST'],
+                '{siteUrl}' => \Yii::$app->urlManager->createAbsoluteUrl('/'),
             ]
         );
     }

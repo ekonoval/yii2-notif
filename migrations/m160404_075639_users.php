@@ -23,11 +23,6 @@ class m160404_075639_users extends Migration
             ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
         ");
 
-//        $this->execute("
-//            INSERT INTO `user` (`id`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-//            (1, 'admin', 'TVX7defvydoxZHZv846jJ5qrR2pHN43q', '$2y$13$/VDCGt/mV0lpYX5NgT28o.R.ZtMSolJw1MVtzrPyIYhGq3W/YhAXi', NULL, 'admin@gmail.com', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-//        ");
-
         $this->batchInsert(
             'user',
             ['id', 'username', 'email', 'status', 'created_at', 'auth_key', 'password_hash', 'password_reset_token'],
@@ -36,7 +31,7 @@ class m160404_075639_users extends Migration
                     Yii::$app->security->generateRandomString(), Yii::$app->security->generatePasswordHash('admin'), NULL],
                 [2, 'admin2', 'admin2@gmail.com', User::STATUS_ACTIVE, '',
                     Yii::$app->security->generateRandomString(), Yii::$app->security->generatePasswordHash('admin2'), NULL],
-                [3, 'user', 'user2@gmail.com', User::STATUS_ACTIVE, '',
+                [3, 'user', 'user@gmail.com', User::STATUS_ACTIVE, '',
                     Yii::$app->security->generateRandomString(), Yii::$app->security->generatePasswordHash('user'), NULL],
                 [4, 'user2', 'user2@gmail.com', User::STATUS_ACTIVE, '',
                     Yii::$app->security->generateRandomString(), Yii::$app->security->generatePasswordHash('user2'), NULL],
