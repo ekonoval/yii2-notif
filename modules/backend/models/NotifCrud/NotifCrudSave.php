@@ -2,6 +2,8 @@
 namespace app\modules\backend\models\NotifCrud;
 
 use app\models\Notification;
+use app\models\NotificationToType;
+use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 
 /**
@@ -26,25 +28,29 @@ class NotifCrudSave extends Notification
         return $rules;
     }
 
-    public function beforeValidate()
+    /**
+     * Wrap save operations in transactions
+     * @return array
+     */
+    public function transactions()
     {
-//        pa($this); exit;
-        return parent::beforeValidate();
+        $transes = parent::transactions();
+        $transes[$this->scenario] = self::OP_ALL;
+
+        return $transes;
     }
-
-
-    public function beforeSave($insert)
-    {
-        pa('before save');
-        pa($this);
-        pa("exit"); exit;
-        return parent::beforeSave($insert);
-    }
-
 
     public function afterSave($insert, $changedAttributes)
     {
-        //pa($this->typeIdsRelated);exit;
+        NotificationToType::deleteAll(['notif_id' => $this->id]);
+
+        foreach ($this->typeIdsRelated as $typeId) {
+            $junction = new NotificationToType();
+            $junction->notif_id = $this->id;
+            $junction->type = $typeId;
+            $junction->save();
+        }
+
         parent::afterSave($insert, $changedAttributes);
     }
 
