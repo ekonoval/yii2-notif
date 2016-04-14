@@ -89,3 +89,22 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+
+/*---------| custom |--------*/
+.site-login {
+    color:#999;
+}
+.site-login .creds ul{
+    font-weight: bold;
+    color: darkred;
+}
+
+.cabinet .item .badges{
+    /*margin-left: 300px;*/
+    float: right;
+    /*margin:10px 0;*/
+}
+.cabinet .item .badges:after{
+    clear: both;
+}

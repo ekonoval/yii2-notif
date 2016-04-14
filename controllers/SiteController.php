@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\ext\Misc\FlashMessageCreator;
+use app\models\NotificationBrowserDispatch;
 use app\models\SignupForm;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -113,6 +115,18 @@ class SiteController extends Controller
 
     public function actionCabinet()
     {
-        return $this->render('cabinet_tpl');
+        $dataProvider = new ActiveDataProvider([
+            'query' => NotificationBrowserDispatch::find()
+                ->where([
+                    //'status' => NotificationBrowserDispatch::STATUS_UNREAD,
+                    'receiver_id' => Yii::$app->user->id
+                ])
+                ->orderBy('id DESC'),
+            'pagination' => [
+                'pageSize' => 2,
+            ],
+        ]);
+
+        return $this->render('cabinet_tpl', ['dataProvider' => $dataProvider]);
     }
 }
