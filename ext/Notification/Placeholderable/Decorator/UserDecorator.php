@@ -6,6 +6,9 @@ use app\ext\Notification\Placeholderable\TextPlaceholderProcessor;
 
 class UserDecorator extends BaseDecorator
 {
+    /**
+     * @var User
+     */
     private $user;
 
     public function __construct(TextPlaceholderProcessor $textPlaceholderProcessor, User $user)

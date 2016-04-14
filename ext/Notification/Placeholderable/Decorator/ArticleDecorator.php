@@ -17,7 +17,6 @@ class ArticleDecorator extends BaseDecorator
         $this->article = $article;
     }
 
-
     protected function replacePlaceholders($text)
     {
         return strtr($text,
