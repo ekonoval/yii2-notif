@@ -3,11 +3,15 @@
 use app\models\Notification;
 use app\modules\backend\models\NotifCrud\NotifCrudSave;
 use yii\helpers\Html;
+use yii\web\JqueryAsset;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model NotifCrudSave */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->registerJsFile('/js/notif-crud.js', [ 'depends' => [JqueryAsset::class], ]);
+
 ?>
 
 <div class="product-form">
