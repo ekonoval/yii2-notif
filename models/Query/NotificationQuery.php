@@ -1,5 +1,5 @@
 <?php
-namespace app\models;
+namespace app\models\Query;
 
 use yii\db\ActiveQuery;
 

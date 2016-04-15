@@ -5,6 +5,7 @@ namespace app\modules\backend\controllers;
 use app\controllers\BackendController;
 use app\modules\backend\models\NotifCrud\NotifCrudSave;
 use app\modules\backend\models\NotifCrud\NotifCrudSearch;
+use app\modules\backend\models\NotifCrud\NotifTagsRelated;
 use Yii;
 
 class NotificationCrudController extends BackendController
@@ -62,6 +63,15 @@ class NotificationCrudController extends BackendController
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionTagsRelated($eventCode)
+    {
+        $this->layout = false;
+        $model = new NotifTagsRelated($eventCode);
+        $tags = $model->getTagsRelated();
+
+        return $this->render('tags_related_tpl', ['tags' => $tags]);
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\Query\NotificationQuery;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
