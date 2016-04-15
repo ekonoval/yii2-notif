@@ -11,11 +11,13 @@ use Yii;
  * @property string $slug
  * @property integer $enabled
  *
- * @property NotificationDecoratorTag[] $NotificationDecoratorTag
- * @property NotificationToDecorator[] $notificationToDecorators
+ * @property NotificationDecoratorTag[] $notificationDecoratorTag
+ * @property NotificationToDecorator[] $notificationToDecorator
  */
 class NotificationDecorator extends \yii\db\ActiveRecord
 {
+    const REL_TAG = 'notificationDecoratorTag';
+
     /**
      * @inheritdoc
      */
@@ -59,7 +61,7 @@ class NotificationDecorator extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNotificationToDecorators()
+    public function getNotificationToDecorator()
     {
         return $this->hasMany(NotificationToDecorator::className(), ['decorator_id' => 'id']);
     }

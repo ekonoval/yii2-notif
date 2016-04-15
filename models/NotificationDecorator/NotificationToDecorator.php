@@ -14,6 +14,8 @@ use Yii;
  */
 class NotificationToDecorator extends \yii\db\ActiveRecord
 {
+    const REL_DECORATOR = 'decorator';
+
     /**
      * @inheritdoc
      */
@@ -48,6 +50,7 @@ class NotificationToDecorator extends \yii\db\ActiveRecord
     }
 
     /**
+     * REL_DECORATOR
      * @return \yii\db\ActiveQuery
      */
     public function getDecorator()
