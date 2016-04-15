@@ -14,7 +14,7 @@ $this->registerJsFile('/js/notif-crud.js', [ 'depends' => [JqueryAsset::class], 
 
 ?>
 
-<div class="product-form">
+<div class="notif-form">
     <?php //pa($model->getTypesDropdownOptions()); ?>
     <?php $form = ActiveForm::begin(['enableClientValidation'=>false]); ?>
 
@@ -25,7 +25,7 @@ $this->registerJsFile('/js/notif-crud.js', [ 'depends' => [JqueryAsset::class], 
     </div>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => 255]) ?>
-    <?= $form->field($model, 'code')->dropDownList(Notification::getEventsList(), ['prompt' => '--select--']) ?>
+    <?= $form->field($model, 'code')->dropDownList(Notification::getEventsList(), ['prompt' => '--select--', 'id' => 'eventCodeId']) ?>
 
     <?= $form->field($model, 'typeIdsRelated')->dropDownList($model->getTypeNamesAvailable(), ['multiple' => true]) ?>
 
@@ -34,6 +34,7 @@ $this->registerJsFile('/js/notif-crud.js', [ 'depends' => [JqueryAsset::class], 
 
     <?= $form->field($model, 'enabled')->checkbox() ?>
     <?= $form->field($model, 'subject')->textInput() ?>
+    <div id="placeHolders"></div>
     <?= $form->field($model, 'body')->textarea(['rows' => 5]) ?>
 
     <div class="form-group">

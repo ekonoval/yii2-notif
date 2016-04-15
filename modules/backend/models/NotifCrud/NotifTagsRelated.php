@@ -7,6 +7,9 @@ use app\models\NotificationDecorator\NotificationToDecorator;
 use Yii;
 use yii\db\Query;
 
+/**
+ * Just a model to play with different join options
+ */
 class NotifTagsRelated
 {
     private $eventCode;
@@ -16,11 +19,11 @@ class NotifTagsRelated
         $this->eventCode = $eventCode;
     }
 
-
     public function getTagsRelated()
     {
-        $this->activeRecordWay();
+        //$this->daoWay();
 
+        return $this->activeRecordWay();
     }
 
     private function daoWay()
@@ -45,8 +48,9 @@ class NotifTagsRelated
     private function activeRecordWay()
     {
         //$model = $this->arWay1();
+
         $model = $this->arWay2();
-        pa($model);
+
         return $model;
     }
 
@@ -56,14 +60,18 @@ class NotifTagsRelated
         $model = NotificationToDecorator::find()
             ->innerJoinWith([
                 NotificationToDecorator::REL_DECORATOR => function (Query $query) {
-                    $query->andWhere(['enabled' => 1]);
+                    $query->andWhere(['d.enabled' => 1]);
+
+                    $query->from(['d' => 'notification_decorator']);
+                    $query->select('d.id, d.slug, d.enabled');
+                    //$query->select('notification_decorator.id, notification_decorator.enabled');
                 },
             ], true)
             ->innerJoinWith([
                 NotificationToDecorator::REL_DECORATOR,
                 NotificationToDecorator::REL_DECORATOR . '.' . NotificationDecorator::REL_TAG => function (Query $query) {
                     $query->from(['dt' => NotificationDecoratorTag::tableName()]);
-                    //$query->select('dt.id, dt.tag');
+                    $query->select('dt.id, dt.decorator_id, dt.tag');
                 }
             ], true)
             ->where(['notif_code' => $this->eventCode])

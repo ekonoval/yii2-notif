@@ -58,7 +58,7 @@ class NfProcessor
 
         $this->composeDispatchData();
 
-        //--- perform all dispathces types ---//
+        //--- perform all dispatches types ---//
         foreach ($this->notifTypes as $notifType) {
             if ($notifType == Notification::TYPE_EMAIL) {
                 $emailDispatcher = new EmailDispatcher($this->dispatchData, $this->notif);
