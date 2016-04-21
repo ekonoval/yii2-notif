@@ -3,6 +3,8 @@
 use Step\Acceptance\CRMOperatorSteps;
 use Step\Acceptance\CRMUserSteps;
 
+$scenario->skip();
+
 $I = new CRMOperatorSteps($scenario);
 $I->wantTo('add two different customers to database');
 $I->amInAddCustomerUi();
