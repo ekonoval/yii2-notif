@@ -4,11 +4,11 @@ Perform the following actions:
 
 - copy /config/db.php.original -> /config/db.php and configure db setting
 
-- php yii migrate --migrationPath=@yii/rbac/migrations
+- yii migrate --migrationPath=@yii/rbac/migrations --interactive=0
 
-- php yii migrate
+- yii migrate --interactive=0
 
-- php yii rbac/init  (to assign roles for test users)
+- yii rbac/init  (to assign roles for test users)
 
 
 
