@@ -1,5 +1,8 @@
 <?php
 
+
+use app\tests\fixtures\UserFixture;
+
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
 
 $params = require(__DIR__ . '/params.php');
@@ -35,6 +38,16 @@ $config = [
         ],
     ],
     */
+
+    'controllerMap' => [
+        'fixture' => [
+            'class' => 'yii\console\controllers\FixtureController',
+            'namespace' => 'app\tests\fixtures',
+            'globalFixtures' => [
+                UserFixture::class,
+            ],
+        ],
+    ]
 ];
 
 if (YII_ENV_DEV) {
