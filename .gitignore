@@ -3,6 +3,8 @@
 
 /config/db.php
 
+/tests/selenium-server
+
 # netbeans project files
 nbproject
 
