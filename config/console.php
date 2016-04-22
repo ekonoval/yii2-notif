@@ -44,7 +44,7 @@ $config = [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'app\tests\fixtures',
             'globalFixtures' => [
-                UserFixture::class,
+                //UserFixture::class,
             ],
         ],
     ]

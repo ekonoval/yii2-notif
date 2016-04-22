@@ -3,8 +3,8 @@ namespace Step\Acceptance;
 
 class UserSteps extends GuestSteps
 {
-    public $username = 'admin1';
-    public $password = 'admin1';
+    public $username = 'user2';
+    public $password = 'user2';
 
 
 }

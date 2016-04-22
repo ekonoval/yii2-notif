@@ -9,16 +9,19 @@ $I->amInCabinet();
 
 $I->seeCabinetPage();
 
-//$I->wantTo("Check that notifications access is disabled for guest");
-//$I->amInNotificationsCrudIndex();
-//$I->seeLoginPage();
-//
-//$I->amInNotificationsCrudEdit();
-//$I->seeLoginPage();
-//
-//$I->wantTo("Check that users-crud access is disabled for guest");
-//$I->amInUsersCrudIndex();
-//$I->seeLoginPage();
-//
-//$I->amInUsersCrudEdit();
-//$I->seeLoginPage();
+$I->wantTo("Check that notifications access is disabled for USER");
+$I->amInNotificationsCrudIndex();
+$I->seeForbidden();
+
+$I->amInNotificationsCrudEdit();
+$I->seeForbidden();
+
+$I->wantTo("Check that users-crud access is disabled for USER");
+$I->amInUsersCrudIndex();
+$I->seeForbidden();
+
+$I->amInUsersCrudEdit();
+$I->seeForbidden();
+
+$I->amInArticlesCrudIndex();
+$I->seeForbidden();

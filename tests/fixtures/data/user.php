@@ -15,12 +15,12 @@ return [
     ],
     'admin1' => [
         'id' => 2,
-        'username' => 'admin1',
-        'email' => 'admin1@mail.com',
+        'username' => 'admin2',
+        'email' => 'admin2@mail.com',
         'status' => User::STATUS_ACTIVE,
         'created_at' => '',
         'auth_key' => Yii::$app->security->generateRandomString(),
-        'password_hash' => Yii::$app->security->generatePasswordHash('admin1'),
+        'password_hash' => Yii::$app->security->generatePasswordHash('admin2'),
         'password_reset_token' => null
     ],
 
@@ -35,14 +35,14 @@ return [
         'password_reset_token' => null
     ],
 
-    'user1' => [
+    'user2' => [
         'id' => 4,
-        'username' => 'user1',
-        'email' => 'user1@mail.com',
+        'username' => 'user2',
+        'email' => 'user2@mail.com',
         'status' => User::STATUS_ACTIVE,
         'created_at' => '',
         'auth_key' => Yii::$app->security->generateRandomString(),
-        'password_hash' => Yii::$app->security->generatePasswordHash('user1'),
+        'password_hash' => Yii::$app->security->generatePasswordHash('user2'),
         'password_reset_token' => null
     ],
 ];

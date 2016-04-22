@@ -22,3 +22,6 @@ $I->seeLoginPage();
 
 $I->amInUsersCrudEdit();
 $I->seeLoginPage();
+
+$I->amInArticlesCrudIndex();
+$I->seeLoginPage();

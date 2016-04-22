@@ -1,4 +1,6 @@
-<?php 
+<?php
+$scenario->skip();
+
 $I = new AcceptanceTester($scenario);
 $I->wantTo('sign in with User2 account');
 $I->amOnPage('/site/login');

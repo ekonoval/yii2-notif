@@ -1,5 +1,6 @@
 <?php 
 $I = new AcceptanceTester($scenario);
+
 $I->wantTo('sign in with User2 account');
 $I->amOnPage('/site/login');
 
@@ -8,7 +9,7 @@ $I->fillField('Password', 'user2');
 $I->click(['name' => 'login-button']);
 
 $I->expect('user2 has been signed in');
-
+$I->wait(1);
 $I->seeInCurrentUrl('/site/cabinet');
 $I->see('Logout (user2)');
 
