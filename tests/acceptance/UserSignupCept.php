@@ -1,22 +1,46 @@
 <?php
-$scenario->skip();
+//$scenario->skip();
 
 $I = new AcceptanceTester($scenario);
-$I->wantTo('sign in with User2 account');
-$I->amOnPage('/site/login');
+$I->wantTo('signup with User2 (duplicating username)');
+$I->amOnPage('/site/signup');
 
 $I->fillField('Username', 'user2');
-$I->fillField('Password', 'user2');
-$I->click(['name' => 'login-button']);
+$I->fillField('Email', 'user3@gmail.com');
+$I->fillField('Password', 'user3');
+$I->click(['id' => 'signup-btn']);
 
-$I->expect('user2 has been signed in');
+$I->expect('to see username duplication error');
 
-$I->seeInCurrentUrl('/site/cabinet');
-$I->see('Logout (user2)');
+$I->wait(1);
+$I->see('has already been taken');
+$I->seeInCurrentUrl('/site/signup');
 
-$I->amGoingTo('logout user2 and check access to cabinet again');
 
-$I->click(['id' => 'logout-btn']);
-$I->dontSee('Logout (user2)');
-$I->amOnPage('/site/cabinet');
-$I->seeInCurrentUrl('/site/login');
+$I->amGoingTo('to signup with existing email'); //----------------------
+$I->amOnPage('/site/signup');
+
+$I->fillField('Username', 'user3');
+$I->fillField('Email', 'user2@gmail.com');
+$I->fillField('Password', 'user3');
+$I->click(['id' => 'signup-btn']);
+
+$I->expect('to see email duplication error');
+
+$I->wait(1);
+$I->see('has already been taken');
+$I->seeInCurrentUrl('/site/signup');
+
+$I->amGoingTo('to signup with valid data'); //----------------------
+$I->amOnPage('/site/signup');
+
+$I->fillField('Username', 'user3');
+$I->fillField('Email', 'user3@gmail.com');
+$I->fillField('Password', 'user3');
+$I->click(['id' => 'signup-btn']);
+
+$I->expect('successful signup');
+
+$I->wait(1);
+$I->seeInCurrentUrl('/');
+$I->see('Logout (user3)');
