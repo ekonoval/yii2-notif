@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.41, for Win32 (x86)
 --
--- Host: localhost    Database: yii2_notif
+-- Host: localhost    Database: yii2_notif_test
 -- ------------------------------------------------------
 -- Server version	5.5.41-log
 
@@ -66,7 +66,7 @@ CREATE TABLE `auth_assignment` (
 
 LOCK TABLES `auth_assignment` WRITE;
 /*!40000 ALTER TABLE `auth_assignment` DISABLE KEYS */;
-INSERT INTO `auth_assignment` VALUES ('admin','1',1463309419),('admin','2',1463309419),('user','3',1463309419),('user','4',1463309419);
+INSERT INTO `auth_assignment` VALUES ('admin','1',1463310908),('admin','2',1463310908),('user','3',1463310908),('user','4',1463310908);
 /*!40000 ALTER TABLE `auth_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `auth_item` (
 
 LOCK TABLES `auth_item` WRITE;
 /*!40000 ALTER TABLE `auth_item` DISABLE KEYS */;
-INSERT INTO `auth_item` VALUES ('admin',1,'Админ',NULL,NULL,1463309419,1463309419),('user',1,'Пользователь',NULL,NULL,1463309418,1463309418);
+INSERT INTO `auth_item` VALUES ('admin',1,'Админ',NULL,NULL,1463310907,1463310907),('user',1,'Пользователь',NULL,NULL,1463310907,1463310907);
 /*!40000 ALTER TABLE `auth_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `migration` (
 
 LOCK TABLES `migration` WRITE;
 /*!40000 ALTER TABLE `migration` DISABLE KEYS */;
-INSERT INTO `migration` VALUES ('m000000_000000_base',1463309412),('m140506_102106_rbac_init',1463309412),('m160404_075639_users',1463309415),('m160405_120729_articles',1463309415),('m160413_091613_notification',1463309416),('m160414_083007_browser_notif_dispatch',1463309417),('m160415_040213_notification_decorator_related',1463309418);
+INSERT INTO `migration` VALUES ('m000000_000000_base',1463310901),('m140506_102106_rbac_init',1463310902),('m160404_075639_users',1463310904),('m160405_120729_articles',1463310905),('m160413_091613_notification',1463310905),('m160414_083007_browser_notif_dispatch',1463310906),('m160415_040213_notification_decorator_related',1463310907);
 /*!40000 ALTER TABLE `migration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,7 +380,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','admin@gmail.com',1,'2016-05-15 10:50:15','43LnV-6zK8iVmgNlJHUHtYYGCKQMey5i','$2y$13$AUV6v2.R/kvajR8DL2mdQu70Hu1lExLyLuyuhRqGFYdO2Nx4uQs3y',NULL),(2,'admin2','admin2@gmail.com',1,'2016-05-15 10:50:15','f98pTTfslm7OekqfDrX_YXQiTUhQNDQr','$2y$13$8h.0MOGALF9nkKxxRs1NhOHcKrOh27Be4SNJQuE4TBPl3Imxr8/Qi',NULL),(3,'user','user@gmail.com',1,'2016-05-15 10:50:15','YPOV-H_XAPvsa7urwbHvhwfZHI8pEvHy','$2y$13$iyxP/THWi0E0TPBGDOfF0.yqGZCZX0CUPjNisN3n5Uqru6o31r7KO',NULL),(4,'user2','user2@gmail.com',1,'2016-05-15 10:50:15','8zRfOFUlCUR4unsrzM2SQgvtGuPITll_','$2y$13$qxJr/MptqpRYRsbHfUPCxeUuKz3v5zjX0uqSy6Y7KqlwewlIt9bpm',NULL);
+INSERT INTO `user` VALUES (1,'admin','admin@gmail.com',1,'2016-05-15 11:15:04','gvpTNWSCS2dYf6ngSJ3uRSDbdcqJ2aPL','$2y$13$zTkOcWtzJheTLbbQ5QV/wuL.C9ZvTI0O4U9rU9RIuHcPvakLIdUmW',NULL),(2,'admin2','admin2@gmail.com',1,'2016-05-15 11:15:04','goA4yV2W1e2P37gR6wMDdS_Jbak6G4wV','$2y$13$Xj.Vh9edpMDAId9s9aFg9uPrMB8ZQIJU4ObAKl2UMz62v17nisscW',NULL),(3,'user','user@gmail.com',1,'2016-05-15 11:15:04','8-8f5APV0yLskfrYOpdJPDtxQQec0ANT','$2y$13$aD7bV3NmfvytgUSNKTASY.ZgmSl4C1d8yMQuWTOigraEfFzcI.eVK',NULL),(4,'user2','user2@gmail.com',1,'2016-05-15 11:15:04','Tly6yreTq7xgsdflEtT0qQRYn3OFbPtm','$2y$13$xdhJMn9.eO.Bx5CE..ttfeLt8bqZewIg6fReQc1Vs1EFrx6xH1Gne',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -393,4 +393,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-15 13:50:19
+-- Dump completed on 2016-05-15 14:15:08

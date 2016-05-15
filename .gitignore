@@ -4,6 +4,7 @@
 /config/db.php
 
 /tests/selenium-server
+/tests/codeception/_data/dump.sql
 
 # netbeans project files
 nbproject
