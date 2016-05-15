@@ -7,15 +7,15 @@
 # (tip: test your ajax and javascript by one of Mink drivers).
 
 # RUN `build` COMMAND AFTER ADDING/REMOVING MODULES.
-
+class_name: AcceptanceTester
 modules:
     enabled:
         - WebDriver:
-            url: http://notif-yii2.dev
+            url: http://notif-yii2.dev/index-test.php
             browser: firefox
             restart: false
 #        - PhpBrowser:
 #            url: http://notif-yii2.dev
-#        - \Helper\Acceptance
+        - \Helper\Acceptance
 
 
