@@ -66,7 +66,7 @@ CREATE TABLE `auth_assignment` (
 
 LOCK TABLES `auth_assignment` WRITE;
 /*!40000 ALTER TABLE `auth_assignment` DISABLE KEYS */;
-INSERT INTO `auth_assignment` VALUES ('admin','1',1461336129),('admin','2',1461336129),('user','3',1461336129),('user','4',1461336129);
+INSERT INTO `auth_assignment` VALUES ('admin','1',1463309419),('admin','2',1463309419),('user','3',1463309419),('user','4',1463309419);
 /*!40000 ALTER TABLE `auth_assignment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `auth_item` (
 
 LOCK TABLES `auth_item` WRITE;
 /*!40000 ALTER TABLE `auth_item` DISABLE KEYS */;
-INSERT INTO `auth_item` VALUES ('admin',1,'Админ',NULL,NULL,1461336129,1461336129),('user',1,'Пользователь',NULL,NULL,1461336129,1461336129);
+INSERT INTO `auth_item` VALUES ('admin',1,'Админ',NULL,NULL,1463309419,1463309419),('user',1,'Пользователь',NULL,NULL,1463309418,1463309418);
 /*!40000 ALTER TABLE `auth_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,7 +174,7 @@ CREATE TABLE `migration` (
 
 LOCK TABLES `migration` WRITE;
 /*!40000 ALTER TABLE `migration` DISABLE KEYS */;
-INSERT INTO `migration` VALUES ('m000000_000000_base',1461336122),('m140506_102106_rbac_init',1461336123),('m160404_075639_users',1461336126),('m160405_120729_articles',1461336126),('m160413_091613_notification',1461336127),('m160414_083007_browser_notif_dispatch',1461336127),('m160415_040213_notification_decorator_related',1461336129);
+INSERT INTO `migration` VALUES ('m000000_000000_base',1463309412),('m140506_102106_rbac_init',1463309412),('m160404_075639_users',1463309415),('m160405_120729_articles',1463309415),('m160413_091613_notification',1463309416),('m160414_083007_browser_notif_dispatch',1463309417),('m160415_040213_notification_decorator_related',1463309418);
 /*!40000 ALTER TABLE `migration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,7 +380,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','admin@gmail.com',1,'2016-04-22 14:42:06','ONw8xiPJaxIrhuxBxPS6xvZv5MKEQQcO','$2y$13$MZKE.aDkY15.yD714pXuP.bPOzqf6Zr8Gd/1rzeQBEqZD7bX75zsC',NULL),(2,'admin2','admin2@gmail.com',1,'2016-04-22 14:42:06','Y82drnhVnN3dA2LQDNy_32UI3XBHRh92','$2y$13$homHFN8dHmKkdDTmCbnaZei2HWFVgpMnbG.2CvSsezqn9OHRdSneS',NULL),(3,'user','user@gmail.com',1,'2016-04-22 14:42:06','oL60xUFt920Jdx_W-PmkTSL0MzxqDRZ0','$2y$13$WUCviGpaMkUhJLaFN8rUsOTMxmSYM53aLkm2vryN7KtHW4SGt6xqG',NULL),(4,'user2','user2@gmail.com',1,'2016-04-22 14:42:06','eT5NTxkE2lVt4wWqRuL6GKzb_xVv4YRo','$2y$13$zJXoTbEoDFZoFCaIUp74I.9kIfkIEdwIvJEokGb.JZcFpmkMdwkNi',NULL);
+INSERT INTO `user` VALUES (1,'admin','admin@gmail.com',1,'2016-05-15 10:50:15','43LnV-6zK8iVmgNlJHUHtYYGCKQMey5i','$2y$13$AUV6v2.R/kvajR8DL2mdQu70Hu1lExLyLuyuhRqGFYdO2Nx4uQs3y',NULL),(2,'admin2','admin2@gmail.com',1,'2016-05-15 10:50:15','f98pTTfslm7OekqfDrX_YXQiTUhQNDQr','$2y$13$8h.0MOGALF9nkKxxRs1NhOHcKrOh27Be4SNJQuE4TBPl3Imxr8/Qi',NULL),(3,'user','user@gmail.com',1,'2016-05-15 10:50:15','YPOV-H_XAPvsa7urwbHvhwfZHI8pEvHy','$2y$13$iyxP/THWi0E0TPBGDOfF0.yqGZCZX0CUPjNisN3n5Uqru6o31r7KO',NULL),(4,'user2','user2@gmail.com',1,'2016-05-15 10:50:15','8zRfOFUlCUR4unsrzM2SQgvtGuPITll_','$2y$13$qxJr/MptqpRYRsbHfUPCxeUuKz3v5zjX0uqSy6Y7KqlwewlIt9bpm',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -393,4 +393,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-22 17:42:10
+-- Dump completed on 2016-05-15 13:50:19

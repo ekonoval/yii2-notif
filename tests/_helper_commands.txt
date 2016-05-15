@@ -1,3 +1,0 @@
-cept build - after config been changed
-
-cept generate:stepobject acceptance CRMOperatorSteps
