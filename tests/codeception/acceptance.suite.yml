@@ -16,6 +16,6 @@ modules:
             restart: false
 #        - PhpBrowser:
 #            url: http://notif-yii2.dev
-        - \Helper\Acceptance
+#        - \Helper\Acceptance
 
 
