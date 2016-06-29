@@ -11,6 +11,14 @@ modules:
     enabled:
       - Filesystem
       - Yii2
+      - Db
     config:
         Yii2:
             configFile: 'codeception/config/functional.php'
+        Db:
+            dsn: 'mysql:host=localhost;dbname=yii2_notif_test'
+            user: 'root'
+            password: ''
+            dump: codeception/_data/dump.sql
+            populate: true
+            cleanup: false
