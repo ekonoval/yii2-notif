@@ -44,9 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
         You may login with
         <ul>
             <li>admin / admin</li>
-            <li>admin1 / admin1</li>
+            <li>admin2 / admin2</li>
             <li>user / user</li>
-            <li>user1 / user1</li>
+            <li>user2 / user2</li>
         </ul>
     </div>
 </div>

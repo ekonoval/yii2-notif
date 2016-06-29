@@ -26,7 +26,7 @@ class SignupForm extends User
         return [
             [['username', 'password', 'email'], 'trim'],
             [['username', 'password', 'email'], 'required'],
-            [['username'], 'unique', ],
+            [['username', 'email'], 'unique', ],
             ['email', 'email'],
         ];
     }

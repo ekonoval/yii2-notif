@@ -3,6 +3,9 @@
 
 /config/db.php
 
+/tests/selenium-server
+/tests/codeception/_data/dump.sql
+
 # netbeans project files
 nbproject
 
@@ -27,3 +30,5 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
+
+tests/_output/*
